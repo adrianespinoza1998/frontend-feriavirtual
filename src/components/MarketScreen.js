@@ -1,94 +1,41 @@
 import React from 'react'
+import { useHistory } from "react-router-dom";
+import { useState } from 'react';
+import { useEffect } from 'react';
+
 import '../styles/landingstyles.css'
 import { FichaProducto } from './FichaProducto'
 import { NavBar } from './NavBar'
+import { listarProductos } from './../helpers/listarProductos';
 
 export const MarketScreen = () => {
 
-    const listaProductos = [
-        {
-            nombre: 'Manzana',
-            precio: 1000,
-            descripcion: 'Fruta dulce y harinosa',
-            stock: 100,
-            img: 'https://cdn.discordapp.com/attachments/650501558437675042/888876601956265994/pngfind.com-apples-png-372458.png'
-        },
-        {
-            nombre: 'Manzana',
-            precio: 1000,
-            descripcion: 'Fruta dulce y harinosa',
-            stock: 100,
-            img: 'https://cdn.discordapp.com/attachments/650501558437675042/888876601956265994/pngfind.com-apples-png-372458.png'
-        },
-        {
-            nombre: 'Manzana',
-            precio: 1000,
-            descripcion: 'Fruta dulce y harinosa',
-            stock: 100,
-            img: 'https://cdn.discordapp.com/attachments/650501558437675042/888876601956265994/pngfind.com-apples-png-372458.png'
-        },
-        {
-            nombre: 'Manzana',
-            precio: 1000,
-            descripcion: 'Fruta dulce y harinosa',
-            stock: 100,
-            img: 'https://cdn.discordapp.com/attachments/650501558437675042/888876601956265994/pngfind.com-apples-png-372458.png'
-        },
-        {
-            nombre: 'Manzana',
-            precio: 1000,
-            descripcion: 'Fruta dulce y harinosa',
-            stock: 100,
-            img: 'https://cdn.discordapp.com/attachments/650501558437675042/888876601956265994/pngfind.com-apples-png-372458.png'
-        },
-        {
-            nombre: 'Manzana',
-            precio: 1000,
-            descripcion: 'Fruta dulce y harinosa',
-            stock: 100,
-            img: 'https://cdn.discordapp.com/attachments/650501558437675042/888876601956265994/pngfind.com-apples-png-372458.png'
-        },
-        {
-            nombre: 'Manzana',
-            precio: 1000,
-            descripcion: 'Fruta dulce y harinosa',
-            stock: 100,
-            img: 'https://cdn.discordapp.com/attachments/650501558437675042/888876601956265994/pngfind.com-apples-png-372458.png'
-        },
-        {
-            nombre: 'Manzana',
-            precio: 1000,
-            descripcion: 'Fruta dulce y harinosa',
-            stock: 100,
-            img: 'https://cdn.discordapp.com/attachments/650501558437675042/888876601956265994/pngfind.com-apples-png-372458.png'
-        },
-        {
-            nombre: 'Manzana',
-            precio: 1000,
-            descripcion: 'Fruta dulce y harinosa',
-            stock: 100,
-            img: 'https://cdn.discordapp.com/attachments/650501558437675042/888876601956265994/pngfind.com-apples-png-372458.png'
-        },
-        {
-            nombre: 'Manzana',
-            precio: 1000,
-            descripcion: 'Fruta dulce y harinosa',
-            stock: 100,
-            img: 'https://cdn.discordapp.com/attachments/650501558437675042/888876601956265994/pngfind.com-apples-png-372458.png'
-        }
-    ];
+    let usuario;
+    const history = useHistory();
+    const [productos, setProductos] = useState([]);
+
+    if(localStorage.getItem('user')==null){
+        history.push('/login');
+    }else{
+        usuario = JSON.parse(localStorage.getItem('user'));
+    }
+
+    useEffect(async()=>{
+        const productos = await listarProductos(usuario.idRol); 
+        console.log(productos);
+        setProductos(productos);
+    },[]);
 
     return (
         <div>
             <NavBar />
             {
-                listaProductos.map( producto =>{
+                productos.map( producto =>{
                     return <FichaProducto 
-                        nombre={producto.nombre}
-                        precio={producto.precio}
-                        descripcion={producto.descripcion}
-                        stock={producto.stock}
-                        img={producto.img} 
+                        nombreProducto={producto.nombreProducto}
+                        precioProducto={producto.precioProducto}
+                        stockProducto={producto.stockProducto}
+                        key={producto.idProducto}
                     />
                 })
             }
