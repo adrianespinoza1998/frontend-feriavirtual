@@ -22,13 +22,11 @@ export const LoginForm = () => {
         if(correo !== '' && contrasena !== ''){
             const data = await validarUsuario(correo, contrasena);
 
-            console.log(data);
-
             if(data.idUsuario!== 0){
                 localStorage.setItem('user', JSON.stringify(data));
                 history.push('/market');
             }else{
-                alert('Corre y/o contraseña incorrectos');
+                alert('Correo y/o contraseña incorrectos');
             }
         }else{
             alert('Uno o más campos vacíos');
