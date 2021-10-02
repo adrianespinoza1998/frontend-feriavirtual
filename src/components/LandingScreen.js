@@ -1,7 +1,15 @@
 import React from 'react'
+import { useHistory } from "react-router-dom";
 import '../styles/landingstyles.css'
 
 export const LandingScreen = () => {
+
+    const history = useHistory();
+
+    const toLogin = ()=>{
+        history.push('/login');
+    }
+
     return (
         <div>
             <h1 className="text-center display-4">Feria Virtual</h1>
@@ -23,7 +31,7 @@ export const LandingScreen = () => {
                 </div>
             </div>
             <div className="text-center p-2">
-                <button className="btn btn-secondary" type="button">Ingresar</button>
+                <button className="btn btn-secondary" type="button" onClick={toLogin}>Ingresar</button>
             </div>
         </div>
     )
