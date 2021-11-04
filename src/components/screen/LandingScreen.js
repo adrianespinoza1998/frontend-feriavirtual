@@ -1,6 +1,6 @@
 import React from 'react'
 import { useHistory } from "react-router-dom";
-import '../styles/landingstyles.css'
+import '../../styles/landingstyles.css'
 
 export const LandingScreen = () => {
 

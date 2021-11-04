@@ -3,10 +3,10 @@ import { useHistory } from "react-router-dom";
 import { useState } from 'react';
 import { useEffect } from 'react';
 
-import '../styles/landingstyles.css'
-import { FichaProducto } from './FichaProducto'
-import { NavBar } from './NavBar'
-import { listarProductos } from './../helpers/listarProductos';
+import '../../styles/landingstyles.css'
+import { FichaProducto } from '../FichaProducto'
+import { NavBar } from '../NavBar'
+import { listarProductos } from '../../helpers/listarProductos';
 
 export const MarketScreen = () => {
 

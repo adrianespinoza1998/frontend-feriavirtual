@@ -1,6 +1,6 @@
 import React from 'react'
-import { NavBar } from './NavBar';
-import '../styles/productos.css'
+import { NavBar } from '../NavBar';
+import '../../styles/productos.css'
 
 export const ProductoScreen = ({nombre, precio, stock, img, descripcion}) => {
     return (

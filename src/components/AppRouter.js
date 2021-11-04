@@ -1,10 +1,11 @@
 import React from 'react'
 import { Route, BrowserRouter as Router, Switch, Redirect } from 'react-router-dom';
-import { LoginScreen } from './LoginScreen';
-import { HomeScreen } from './HomeScreen';
-import { LandingScreen } from './LandingScreen';
-import { MarketScreen } from './MarketScreen';
-import { ProductoScreen } from './ProductoScreen';
+import { LoginScreen } from './screen/LoginScreen';
+import { HomeScreen } from './screen/HomeScreen';
+import { LandingScreen } from './screen/LandingScreen';
+import { MarketScreen } from './screen/MarketScreen';
+import { ProductoScreen } from './screen/ProductoScreen';
+import { SignInScreen } from './screen/SignInScreen';
 
 export const AppRouter = () => {
     return (
@@ -15,6 +16,9 @@ export const AppRouter = () => {
                 </Route>
                 <Route exact path="/login">
                     <LoginScreen />
+                </Route>
+                <Route exact path="/signin">
+                    <SignInScreen />
                 </Route>
                 <Route exact path="/home">
                     <HomeScreen />

@@ -1,11 +1,12 @@
 import axios from 'axios';
+import {urlApi} from '../helpers/url';
 
 export const listarProductos = async(id) => {
 
     try{
         const fetch = await axios({
             method: 'GET',
-            url: `http://localhost:8080/api/producto/${id}`,
+            url: `${urlApi}/api/producto/${0}`,
         });
     
         const {data} = fetch;
