@@ -3,9 +3,7 @@ import '../styles/productos.css'
 import {userIcon} from '../helpers/getUserImg';
 
 export const FichaProducto = ({nombreProducto, precioProducto, 
-    stockProducto}) => {
-
-    const img = "https://cdn.discordapp.com/attachments/650501558437675042/888876601956265994/pngfind.com-apples-png-372458.png";
+    stockProducto, img}) => {
 
     return (
         <div className="card ficha-producto">

@@ -21,7 +21,7 @@ export const MarketScreen = () => {
     }
 
     useEffect(async()=>{
-        const productos = await listarProductos(usuario.idRol); 
+        const productos = await listarProductos(0); 
         console.log(productos);
         setProductos(productos);
     },[]);
@@ -32,10 +32,11 @@ export const MarketScreen = () => {
             {
                 productos.map( producto =>{
                     return <FichaProducto 
-                        nombreProducto={producto.nombreProducto}
-                        precioProducto={producto.precioProducto}
-                        stockProducto={producto.stockProducto}
+                        nombreProducto={producto.nombre}
+                        precioProducto={producto.precio}
+                        stockProducto={producto.stock}
                         key={producto.idProducto}
+                        img={producto.img}
                     />
                 })
             }

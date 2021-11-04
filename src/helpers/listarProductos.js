@@ -6,7 +6,7 @@ export const listarProductos = async(id) => {
     try{
         const fetch = await axios({
             method: 'GET',
-            url: `${urlApi}/api/producto/${0}`,
+            url: `${urlApi}/api/producto/${id}`,
         });
     
         const {data} = fetch;
