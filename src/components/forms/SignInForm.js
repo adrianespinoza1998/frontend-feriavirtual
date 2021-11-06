@@ -159,7 +159,7 @@ export const SignInForm = ()=>{
             <p className="mt-1">Seleccionar rol:</p>
             <SelectRoles handleInputChange={handleInputChange} />
 
-            <div class="form-check mt-1">
+            <div className="form-check mt-1">
                 <input 
                     className="form-check-input" 
                     name="terminosCondiciones" 

@@ -4,11 +4,14 @@ import { useHistory } from "react-router-dom";
 import { userIcon } from '../../helpers/getUserImg'
 import { validarUsuario } from '../../helpers/validarUsuario';
 import { useForm } from '../../hooks/useForm';
+import { useValidarRol } from './../../hooks/useValidarRol';
 
 export const LoginForm = () => {
 
     const history = useHistory();
     
+    const [validar] = useValidarRol();
+
     const [form, handleInputChange] = useForm({
         correo: '',
         contrasena: ''
@@ -24,7 +27,8 @@ export const LoginForm = () => {
 
             if(data.idUsuario!== 0){
                 localStorage.setItem('user', JSON.stringify(data));
-                history.push('/market');
+
+                validar(data);
             }else{
                 alert('Correo y/o contraseña incorrectos');
             }

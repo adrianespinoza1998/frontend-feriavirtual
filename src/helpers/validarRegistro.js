@@ -29,7 +29,7 @@ export const validarRegistro = (form)=>{
             const arrayDireccion = [];
 
             direccion.map((dir)=>{
-                arrayDireccion.push(dir)
+                return arrayDireccion.push(dir);
             });
 
             if(arrayDireccion.lenght <2 || Number(arrayDireccion[arrayDireccion.length-1]) == null || 
