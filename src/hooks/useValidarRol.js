@@ -24,7 +24,10 @@ export const useValidarRol = ()=>{
                     history.push('/market');
                     break;
                 case 5:
-                    history.push('/subasta');
+                    history.push('/externo');
+                    break;
+                default:
+                    history.push('/login');
                     break;
             }
         }

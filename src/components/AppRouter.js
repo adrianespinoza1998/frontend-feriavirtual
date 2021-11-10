@@ -9,6 +9,8 @@ import { ProductorScreen } from './screen/ProductorScreen'
 import { SignInScreen } from './screen/SignInScreen';
 import { SubastaScreen } from './screen/SubastaScreen';
 import { TransporteScreen } from './screen/TransporteScreen';
+import { HomeClienteExterno } from './screen/HomeClienteExterno';
+import { ListaSubastas } from './screen/ListaSubastas';
 
 export const AppRouter = () => {
 
@@ -24,7 +26,7 @@ export const AppRouter = () => {
             case 4:
                 return <MarketScreen />
             case 5:
-                return <SubastaScreen />
+                return <HomeClienteExterno />
         }
     }
 
@@ -77,6 +79,20 @@ export const AppRouter = () => {
                         (auth === null)
                         ?<LoginScreen />
                         : (auth.idRol !== 3) ? redireccionar(auth.idRol) : <TransporteScreen />
+                    }
+                </Route>
+                <Route exact path="/externo">
+                    {
+                        (auth === null)
+                        ?<LoginScreen />
+                        : (auth.idRol !== 5) ? redireccionar(auth.idRol) : <HomeClienteExterno />
+                    }
+                </Route>
+                <Route exact path="/lista-subastas">
+                    {
+                        (auth === null)
+                        ?<LoginScreen />
+                        : (auth.idRol !== 5) ? redireccionar(auth.idRol) : <ListaSubastas />
                     }
                 </Route>
                 <Redirect to="/" />
