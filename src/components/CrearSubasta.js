@@ -1,5 +1,5 @@
 import { SelectProducto } from "./select/SelectProducto";
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useForm } from './../hooks/useForm';
 
 export const CrearSubasta = ({handleAddDetSol})=>{
@@ -10,6 +10,9 @@ export const CrearSubasta = ({handleAddDetSol})=>{
     });
 
 
+    useEffect(()=>{
+        
+    },[])
     const {idProducto, cantidad} = form;
 
     const handleChange = ()=>{

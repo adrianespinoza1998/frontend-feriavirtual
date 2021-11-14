@@ -39,8 +39,19 @@ export const validarRegistro = (form)=>{
                 return false;
             }
 
+            if(Number(arrayDireccion[arrayDireccion.length-1])<1){
+                alert('Número de dirección incorrecto');
+
+                return false;
+            }
+
             if(isNaN(form.codPostal)){
                 alert("Código postal sin números");
+                return false;
+            }
+
+            if(form.codPostal.lenght>=7 || Number(form.codPostal)>0){
+                alert('Código postal incorrecto');
                 return false;
             }
 
@@ -51,6 +62,11 @@ export const validarRegistro = (form)=>{
 
             if(form.contrasena.lenght<6){
                 alert("Contraseña debe poseer mínimo 6 caracteres");
+                return false;
+            }
+
+            if(form.contrasena === form.usuario){
+                alert('Contraseña debe ser diferente al usuario');
                 return false;
             }
 

@@ -1,12 +1,15 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { useHistory } from "react-router-dom";
 
 import { userIcon } from '../../helpers/getUserImg'
 import { validarUsuario } from '../../helpers/validarUsuario';
 import { useForm } from '../../hooks/useForm';
+import { UserContext } from '../UserContext';
 import { useValidarRol } from './../../hooks/useValidarRol';
 
 export const LoginForm = () => {
+
+    const {user, setUser} = useContext(UserContext);
 
     const history = useHistory();
     
@@ -26,9 +29,13 @@ export const LoginForm = () => {
             const data = await validarUsuario(correo, contrasena);
 
             if(data.idUsuario!== 0){
-                localStorage.setItem('user', JSON.stringify(data));
+                //localStorage.setItem('user', JSON.stringify(data));
 
-                validar(data);
+                setUser(data);
+
+                console.log(user);
+
+                validar(user);
             }else{
                 alert('Correo y/o contraseña incorrectos');
             }
