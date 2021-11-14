@@ -1,8 +1,7 @@
 import { CrearSubasta } from '../CrearSubasta';
 import { NavBar } from './../NavBar';
 
-import { useReducer, useState } from 'react';
-import { todoReducer } from '../reducer/todoReducer';
+import { useState } from 'react';
 import { useEffect } from 'react'
 import { useHistory } from 'react-router-dom';
 
@@ -11,70 +10,32 @@ import '../../styles/subasta-screen.css';
 export const SubastaScreen = ()=>{
 
     const history = useHistory();
-    const init = ()=>{
-        return JSON.parse(localStorage.getItem('detSolProd')) || [];
-    }
 
-    const handleAddDetSol = ( newTodo )=>{
-
-        dispatch({
-            type: 'add',
-            payload: newTodo
-        });
-    }
+    const [id, setId] = useState(1);
 
     const [formProd, setFormProd] = useState([
-        <CrearSubasta handleAddDetSol={handleAddDetSol} />
+        <CrearSubasta key={Date.now().toString()} id={id} />
     ]);
 
-    const [detSolProd, dispatch] = useReducer(todoReducer, [], init);
-
-    useEffect(()=>{
-        localStorage.setItem('detSolProd', JSON.stringify(detSolProd));
-    }, [detSolProd]);
-
-    const [subasta, setSubasta] = useState({
-        idUsuario : 0,
-        idSolicitudProductos : 0
-    });
-
-    const [solProd, setSolProd] = useState({
-        idUsuario : 0,
-        idTipoSolicitud : 0,
-        idEstadoSolicitud : 0
-    });
-
-    /*const [detSolProd, setDetSolProd] = useState([{
-        idProducto : 0,
-        idSolicitudProducto : 0,
-        cantidad : 0
-    }]);*/
-
     const handleAddProducto = ()=>{
+
+        const i = id+1;
+
+        setId(i);
+
         setFormProd([
             ...formProd,
-            <CrearSubasta  />
+            <CrearSubasta key={Date.now().toString()} id={i}  />
         ]);
-
-        /*setDetSolProd([
-            ...detSolProd,
-            {
-                idProducto : 0,
-                idSolicitudProducto : 0,
-                cantidad : 0
-            }
-        ]);*/
     }
 
     const handleRemoveProducto = ()=>{
         if(formProd.length>1){
             const listaProductos = formProd.slice(0,formProd.length-1);
 
+            setId(id-1);
+
             setFormProd(listaProductos);
-
-            /*const listaDetSol = detSolProd.slice(0,detSolProd.length-1);
-
-            setDetSolProd(listaDetSol);*/
         }
     }
 

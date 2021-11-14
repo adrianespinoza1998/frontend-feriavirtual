@@ -2,7 +2,7 @@ import { SelectProducto } from "./select/SelectProducto";
 import { useState, useEffect } from 'react';
 import { useForm } from './../hooks/useForm';
 
-export const CrearSubasta = ({handleAddDetSol})=>{
+export const CrearSubasta = ({id})=>{
 
     const [form, handleInputChange] = useForm({
         idProducto : 0,
@@ -11,7 +11,7 @@ export const CrearSubasta = ({handleAddDetSol})=>{
 
 
     useEffect(()=>{
-        
+        console.log(JSON.stringify(id));
     },[])
     const {idProducto, cantidad} = form;
 

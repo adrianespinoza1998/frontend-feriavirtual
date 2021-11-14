@@ -5,7 +5,7 @@ import { UserContext } from './UserContext';
 
 export const MainApp = () => {
 
-    const [user, setUser] = useState({});
+    const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')));
 
     return (
         <UserContext.Provider value={{

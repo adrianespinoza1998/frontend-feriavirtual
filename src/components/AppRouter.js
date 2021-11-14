@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext, useReducer } from 'react'
 import { Route, BrowserRouter as Router, Switch, Redirect } from 'react-router-dom';
 import { LoginScreen } from './screen/LoginScreen';
 import { HomeScreen } from './screen/HomeScreen';
@@ -11,11 +11,17 @@ import { SubastaScreen } from './screen/SubastaScreen';
 import { TransporteScreen } from './screen/TransporteScreen';
 import { HomeClienteExterno } from './screen/HomeClienteExterno';
 import { ListaSubastas } from './screen/ListaSubastas';
+import { SubastaContext } from './SubastaContext';
+import { UserContext } from './UserContext';
+
+
+const initialState = [];
 
 export const AppRouter = () => {
 
+    const {user} = useContext(UserContext);
 
-    const auth = JSON.parse(localStorage.getItem('user'));
+    //const [producto, dispatch] = useReducer(reducer, initialState, init)
 
     const redireccionar = (idRol)=>{
         switch(idRol){
@@ -26,7 +32,11 @@ export const AppRouter = () => {
             case 4:
                 return <MarketScreen />
             case 5:
-                return <HomeClienteExterno />
+                return (
+                    <SubastaContext.Provider>
+                        <HomeClienteExterno />
+                    </SubastaContext.Provider>
+                )
         }
     }
 
@@ -47,52 +57,52 @@ export const AppRouter = () => {
                 </Route>
                 <Route exact path="/market">
                     {
-                        (auth === null) 
+                        (user === null) 
                             ? <LoginScreen /> 
-                            : (auth.idRol !== 4) ? redireccionar(auth.idRol) : <MarketScreen />
+                            : (user.idRol !== 4) ? redireccionar(user.idRol) : <MarketScreen />
                     }
                 </Route>
                 <Route exact path="/producto">
                     {
-                        (auth === null)
+                        (user === null)
                             ?<LoginScreen />
-                            : (auth.idRol !== 4) ? redireccionar(auth.idRol) : <ProductoScreen />
+                            : (user.idRol !== 4) ? redireccionar(user.idRol) : <ProductoScreen />
                     }
                     <ProductoScreen />
                 </Route>
                 <Route exact path="/productor">
                     {
-                        (auth === null)
+                        (user === null)
                             ?<LoginScreen />
-                            : (auth.idRol !== 2) ? redireccionar(auth.idRol) : <ProductorScreen />
+                            : (user.idRol !== 2) ? redireccionar(user.idRol) : <ProductorScreen />
                     }
                 </Route>
                 <Route exact path="/subasta">
                     {
-                        (auth === null)
+                        (user === null)
                         ?<LoginScreen />
-                        : (auth.idRol !== 5) ? redireccionar(auth.idRol) : <SubastaScreen />
+                        : (user.idRol !== 5) ? redireccionar(user.idRol) : <SubastaScreen />
                     }
                 </Route>
                 <Route exact path="/transporte">
                     {
-                        (auth === null)
+                        (user === null)
                         ?<LoginScreen />
-                        : (auth.idRol !== 3) ? redireccionar(auth.idRol) : <TransporteScreen />
+                        : (user.idRol !== 3) ? redireccionar(user.idRol) : <TransporteScreen />
                     }
                 </Route>
                 <Route exact path="/externo">
                     {
-                        (auth === null)
+                        (user === null)
                         ?<LoginScreen />
-                        : (auth.idRol !== 5) ? redireccionar(auth.idRol) : <HomeClienteExterno />
+                        : (user.idRol !== 5) ? redireccionar(user.idRol) : <HomeClienteExterno />
                     }
                 </Route>
                 <Route exact path="/lista-subastas">
                     {
-                        (auth === null)
+                        (user === null)
                         ?<LoginScreen />
-                        : (auth.idRol !== 5) ? redireccionar(auth.idRol) : <ListaSubastas />
+                        : (user.idRol !== 5) ? redireccionar(user.idRol) : <ListaSubastas />
                     }
                 </Route>
                 <Redirect to="/" />

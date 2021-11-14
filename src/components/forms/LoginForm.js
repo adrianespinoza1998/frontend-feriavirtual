@@ -29,13 +29,13 @@ export const LoginForm = () => {
             const data = await validarUsuario(correo, contrasena);
 
             if(data.idUsuario!== 0){
-                //localStorage.setItem('user', JSON.stringify(data));
+                localStorage.setItem('user', JSON.stringify(data));
 
                 setUser(data);
 
                 console.log(user);
 
-                validar(user);
+                validar(data);
             }else{
                 alert('Correo y/o contraseña incorrectos');
             }
