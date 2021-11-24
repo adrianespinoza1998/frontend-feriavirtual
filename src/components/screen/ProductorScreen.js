@@ -1,4 +1,3 @@
-import { NavBar } from './../NavBar';
 import { useHistory } from "react-router-dom";
 
 export const ProductorScreen = ()=>{
@@ -17,7 +16,6 @@ export const ProductorScreen = ()=>{
 
     return(
         <div>
-            <NavBar />
             <p>ProductorScreen</p>
         </div>
     );

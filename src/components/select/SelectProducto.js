@@ -1,13 +1,13 @@
-import { listarProductos } from '../../helpers/listarProductos';
-import {useEffect} from 'react';
+import {useEffect, useMemo} from 'react';
 import {useState} from 'react';
+import { listarTipoProducto } from './../../helpers/listarTipoProducto';
 
 export const SelectProducto = ({handleInputChange})=>{
 
     const [productos, setProductos] = useState([]);
 
     useEffect(async()=>{
-        const productos = await listarProductos(0); 
+        const productos = await listarTipoProducto(); 
         setProductos(productos);
     },[]);
 
@@ -15,7 +15,7 @@ export const SelectProducto = ({handleInputChange})=>{
 
         handleInputChange({
             target:{
-                name: 'idProducto',
+                name: 'id_tipo_producto',
                 value: parseInt(target.value)
             }
         });
@@ -23,9 +23,10 @@ export const SelectProducto = ({handleInputChange})=>{
 
     return(
         <select className="form-control" onChange={handle}>
+            <option key={0} value={0}>--SELECCIONE TIPO PRODUCTO--</option>
             {
                 productos.map( prod =>{
-                    return <option key={prod.idProducto} value={prod.idProducto}>{prod.nombre}</option>
+                    return <option key={prod.id_tipo_producto} value={prod.id_tipo_producto}>{prod.descripcion}</option>
 
                 })
             }

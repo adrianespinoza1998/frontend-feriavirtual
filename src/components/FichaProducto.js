@@ -1,6 +1,6 @@
 import React from 'react'
 import '../styles/productos.css'
-import {userIcon} from '../helpers/getUserImg';
+import { useHistory } from 'react-router-dom';
 
 export const FichaProducto = ({nombreProducto, precioProducto, 
     stockProducto, img}) => {

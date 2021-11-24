@@ -1,4 +1,3 @@
-import { NavBar } from "../NavBar";
 import { useHistory } from "react-router-dom";
 
 export const TransporteScreen = ()=>{
@@ -17,7 +16,6 @@ export const TransporteScreen = ()=>{
 
     return(
         <div>
-            <NavBar />
             <p>TransporteScreen</p>
         </div>
     );

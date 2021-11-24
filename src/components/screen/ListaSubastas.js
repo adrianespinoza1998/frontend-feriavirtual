@@ -1,12 +1,9 @@
-import { NavBar } from "../NavBar"
-
 import '../../styles/subasta-screen.css';
 
 export const ListaSubastas = ()=>{
 
     return(
         <div>
-            <NavBar />
             <div className="formulario-subasta">
                 <div className="text-center">
                     <p className="display-4">Lista Subastas</p>
