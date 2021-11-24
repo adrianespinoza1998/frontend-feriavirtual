@@ -1,11 +1,12 @@
 import axios from 'axios';
+import { urlApi } from './url';
 
 export const validarUsuario = async(correo, contrasena) => {
 
     try{
         const fetch = await axios({
             method: 'POST',
-            url: 'http://localhost:8080/api/auth',
+            url: urlApi + '/api/auth',
             data: {
                 correo,
                 contrasena
