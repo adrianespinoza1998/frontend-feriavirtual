@@ -1,6 +1,5 @@
 import React from 'react'
 import '../styles/productos.css'
-import { useHistory } from 'react-router-dom';
 
 export const FichaProducto = ({nombreProducto, precioProducto, 
     stockProducto, img}) => {

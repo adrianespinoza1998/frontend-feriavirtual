@@ -2,7 +2,7 @@ import axios from "axios";
 import { urlApi } from "./url";
 
 
-export const createUsuario = async(idUsuario = 0, idSolicitudProductos = 0 )=>{
+export const createSubasta = async(idUsuario = 0, idSolicitudProductos = 0 )=>{
 
     try{
 
