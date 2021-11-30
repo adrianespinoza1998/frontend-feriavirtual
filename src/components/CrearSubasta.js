@@ -45,7 +45,7 @@ export const CrearSubasta = ({id, dispatch})=>{
     return (
         <form className="form-subasta">
             <p className="mt-1">Seleccionar producto:</p>
-            <SelectProducto handleInputChange={handleChange} />
+            <SelectProducto handleInputChange={handleChange} id={id} />
             <p className="mt-1">Cantidad:</p>
             <div className="row">
                 <div className="col-11">

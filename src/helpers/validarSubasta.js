@@ -3,9 +3,12 @@ export const validarSubasta = (subastas)=>{
     for (const subasta of subastas){
 
         const input = document.querySelector(`#inputSubasta${subasta.id}`);
-        const cantNum = Number(input.value);
+        const inputSelect = document.querySelector(`#selTipoProd${subasta.id}`);
 
-        if(subasta.id_tipo_producto<=0){
+        const cantNum = Number(input.value);
+        const idTipoProd = Number(inputSelect.value);
+
+        if(idTipoProd<=0){
             alert('Por favor ingrese un tipo de producto');
             return false;
         }
