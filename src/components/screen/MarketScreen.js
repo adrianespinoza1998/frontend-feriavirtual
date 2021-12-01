@@ -20,30 +20,23 @@ export const MarketScreen = () => {
         setProductos(productos);
     },[]);
 
-    useEffect(()=>{
-        setLoading(true);
-    });
-
-    const handleClick = (idProducto)=>{
-        if(loading){
-            history.push(`/producto/${idProducto}`);
-        }
-    }
-
     return (
         <div>
             {
-                productos.map( producto =>{
-                    return <FichaProducto
-                                nombreProducto={producto.nombre}
-                                precioProducto={producto.precio}
-                                stockProducto={producto.stock}
-                                key={producto.idProducto}
-                                img={producto.img}
-                            />
+                productos.map( (producto, index) =>{
+
+                    return <div key={producto.idProducto}>
+                                <FichaProducto 
+                                    nombreProducto={producto.nombre}
+                                    precioProducto={producto.precio}
+                                    stockProducto={producto.stock}
+                                    img={producto.img}
+                                    idProducto={producto.idProducto}
+                                />
+                            </div>
+                        
                 })
             }
-
         </div>
     );
 }
