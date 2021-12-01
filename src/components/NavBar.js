@@ -22,7 +22,7 @@ export const NavBar = () => {
 
                 <div className="row">
                     <div className="col-6">
-                        <Link className="nav-link text-light" to="/home"><i className="fas fa-cart-plus"></i></Link>
+                        <Link className="nav-link text-light" to="/comprar"><i className="fas fa-cart-plus"></i></Link>
                     </div>
                     <div className="col-6">
                         <button className="nav-link text-light btn btn-dark" onClick={handleCloseSesion}><i className="fas fa-sign-out-alt"></i></button>

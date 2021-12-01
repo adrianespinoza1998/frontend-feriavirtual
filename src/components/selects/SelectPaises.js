@@ -7,10 +7,14 @@ export const SelectPaises = ({handleInputChange})=>{
 
     const [paises, setPaises] = useState([]);
 
-    useEffect(async()=>{
+    const fetchData = async()=>{
         const listaPaises = await listarPaises();
 
         setPaises(listaPaises);
+    }
+
+    useEffect(()=>{
+        fetchData();
     },[]);
 
     const handle = ({target})=>{

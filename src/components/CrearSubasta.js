@@ -1,4 +1,4 @@
-import { SelectProducto } from "./select/SelectProducto";
+import { SelectProducto } from "./selects/SelectProducto";
 import { useEffect } from 'react';
 import { useForm } from './../hooks/useForm';
 

@@ -27,7 +27,7 @@ export const LandingScreen = () => {
                     </p>
                 </div>
                 <div className="col-6">
-                    <img className="img-manzana" src="https://cdn.discordapp.com/attachments/650501558437675042/888876601956265994/pngfind.com-apples-png-372458.png" />
+                    <img className="img-manzana" src="https://cdn.discordapp.com/attachments/650501558437675042/888876601956265994/pngfind.com-apples-png-372458.png" alt="manzana" />
                 </div>
             </div>
             <div className="text-center p-2">

@@ -1,4 +1,4 @@
-import {useEffect, useMemo} from 'react';
+import {useEffect} from 'react';
 import {useState} from 'react';
 import { listarTipoProducto } from './../../helpers/listarTipoProducto';
 
@@ -6,9 +6,13 @@ export const SelectProducto = ({handleInputChange, id = 0})=>{
 
     const [productos, setProductos] = useState([]);
 
-    useEffect(async()=>{
+    const fetchData = async()=>{
         const productos = await listarTipoProducto(); 
         setProductos(productos);
+    }
+
+    useEffect(()=>{
+        fetchData();
     },[]);
 
     const handle = ({target})=>{

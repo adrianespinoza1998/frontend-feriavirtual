@@ -1,16 +1,17 @@
 import React, { useContext } from 'react'
 import { Switch } from 'react-router'
 import { Route } from 'react-router-dom';
-import { LoginScreen } from './../screen/LoginScreen';
-import { MarketScreen } from './../screen/MarketScreen';
-import { ProductoScreen } from './../screen/ProductoScreen';
-import { ProductorScreen } from './../screen/ProductorScreen';
-import { SubastaScreen } from './../screen/SubastaScreen';
-import { TransporteScreen } from './../screen/TransporteScreen';
-import { HomeClienteExterno } from './../screen/HomeClienteExterno';
-import { ListaSubastas } from './../screen/ListaSubastas';
+import { LoginScreen } from './../screens/LoginScreen';
+import { MarketScreen } from './../screens/MarketScreen';
+import { ProductoScreen } from './../screens/ProductoScreen';
+import { ProductorScreen } from './../screens/ProductorScreen';
+import { SubastaScreen } from './../screens/SubastaScreen';
+import { TransporteScreen } from './../screens/TransporteScreen';
+import { HomeClienteExterno } from './../screens/HomeClienteExterno';
+import { ListaSubastas } from './../screens/ListaSubastas';
 import { NavBar } from '../NavBar';
-import { UserContext } from '../UserContext';
+import { UserContext } from '../contexts/UserContext';
+import { ComprasScreen } from '../screens/ComprasScreen';
 
 export const DashboardRoutes = () => {
 
@@ -26,6 +27,8 @@ export const DashboardRoutes = () => {
                 return <MarketScreen />
             case 5:
                 return <HomeClienteExterno />
+            default:
+                return <LoginScreen />
         }
     }
 
@@ -81,6 +84,13 @@ export const DashboardRoutes = () => {
                         (user === null)
                         ?<LoginScreen />
                         : (user.idRol !== 5) ? redireccionar(user.idRol) : <ListaSubastas />
+                    }
+                </Route>
+                <Route exact path="/comprar">
+                    {
+                        (user === null)
+                        ?<LoginScreen />
+                        : (user.idRol !== 4) ? redireccionar(user.idRol) : <ComprasScreen />
                     }
                 </Route>
             </Switch>

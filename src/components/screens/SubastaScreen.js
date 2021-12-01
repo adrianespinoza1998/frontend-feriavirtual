@@ -1,8 +1,8 @@
 import { CrearSubasta } from '../CrearSubasta';
 
 import { useContext, useState } from 'react';
-import { SubastaContext } from './../SubastaContext';
-import { UserContext } from './../UserContext';
+import { SubastaContext } from '../contexts/SubastaContext';
+import { UserContext } from '../contexts/UserContext';
 
 import { createDetSol } from '../../helpers/createDetSol';
 import { createDetalleDetSol } from '../../helpers/createDetalleDetSol';
@@ -13,7 +13,6 @@ import '../../styles/subasta-screen.css';
 
 export const SubastaScreen = ()=>{
 
-    //TODO: Implementar useMemo
     const {user} = useContext(UserContext);
 
     const {subasta, dispatch} = useContext(SubastaContext);

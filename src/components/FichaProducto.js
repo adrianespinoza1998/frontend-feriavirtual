@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { useHistory } from 'react-router';
 import '../styles/productos.css'
 
@@ -13,7 +13,7 @@ export const FichaProducto = ({nombreProducto, precioProducto,
 
     return (
         <div className="card ficha-producto" onClick={()=>{handleClick(idProducto)}}>
-            <img className="card-img-top img-manzana" src={img} />
+            <img className="card-img-top img-manzana" src={img} alt={nombreProducto}/>
             <div className="card-body">
                 <p>Nombre: {nombreProducto}</p>
                 <p>Precio: {precioProducto}</p>

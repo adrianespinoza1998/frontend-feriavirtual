@@ -1,6 +1,6 @@
 import React from 'react';
-import { SelectPaises } from '../select/SelectPaises';
-import { SelectRoles } from '../select/SelectRoles';
+import { SelectPaises } from '../selects/SelectPaises';
+import { SelectRoles } from '../selects/SelectRoles';
 import { useForm } from './../../hooks/useForm';
 import { useHistory } from "react-router-dom";
 
@@ -62,7 +62,7 @@ export const SignInForm = ()=>{
     }
 
     const toggleTerminos = (e)=>{
-        if(e.target.value == 0){
+        if(e.target.value === 0){
             e.target.value = 1;
         }else{
             e.target.value = 0;
