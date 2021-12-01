@@ -23,18 +23,15 @@ export const MarketScreen = () => {
     return (
         <div>
             {
-                productos.map( (producto, index) =>{
+                productos.map( (producto) =>{
 
-                    return <div key={producto.idProducto}>
-                                <FichaProducto 
-                                    nombreProducto={producto.nombre}
-                                    precioProducto={producto.precio}
-                                    stockProducto={producto.stock}
-                                    img={producto.img}
-                                    idProducto={producto.idProducto}
-                                />
-                            </div>
-                        
+                    return <FichaProducto 
+                                nombreProducto={producto.nombre}
+                                precioProducto={producto.precio}
+                                stockProducto={producto.stock}
+                                img={producto.img}
+                                idProducto={producto.idProducto}
+                            />                      
                 })
             }
         </div>

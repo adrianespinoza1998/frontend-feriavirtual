@@ -12,7 +12,7 @@ export const FichaProducto = ({nombreProducto, precioProducto,
     }
 
     return (
-        <div className="card ficha-producto" id={`fichaProd${idProducto}`} onClick={()=>{handleClick(idProducto)}}>
+        <div className="card ficha-producto" onClick={()=>{handleClick(idProducto)}}>
             <img className="card-img-top img-manzana" src={img} />
             <div className="card-body">
                 <p>Nombre: {nombreProducto}</p>
