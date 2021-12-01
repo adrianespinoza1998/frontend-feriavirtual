@@ -1,19 +1,51 @@
-import '../../styles/subasta-screen.css';
+import React, { useContext } from 'react'
+import { useState } from 'react';
+import { useEffect } from 'react';
 
-export const ListaSubastas = ()=>{
+import '../../styles/landingstyles.css'
+import { listarSubastas } from '../../helpers/listarSubastas';
+import { useHistory } from 'react-router-dom';
+import { UserContext } from '../UserContext';
 
-    return(
-        <div>
-            <div className="formulario-subasta">
-                <div className="text-center">
-                    <p className="display-4">Lista Subastas</p>
-                </div>
-                <ul className="list-group text-center">
-                    <li className="list-group-item list-group-item-action list-group-item-light btn">Subasta 1 21-05-2021</li>
-                    <li className="list-group-item list-group-item-action list-group-item-light btn">Subasta 2 18-07-2021</li>
-                    <li className="list-group-item list-group-item-action list-group-item-light btn">Subasta 3 08-02-2021</li>
-                </ul>
-            </div>
-        </div>
-    )
+export const ListaSubastas = () => {
+
+    const [productos, setProductos] = useState([]);
+
+    const {user} = useContext(UserContext)
+    
+    const history = useHistory();
+
+    const [idSubIni, setIdSubIni] = useState(0) 
+
+    useEffect(async()=>{
+        const productos = await listarSubastas(user.idUsuario); 
+        setProductos(productos);
+
+        setIdSubIni( productos[0].idSubastas -1);
+
+    },[]);
+
+
+    return (
+        <ul>
+            {
+                productos.map( producto =>{
+                    return <li key={producto.idSubastas}>
+                                   {'subasta ' + (producto.idSubastas - idSubIni) + ' - ' + 'Tipo de  solicitud : ' + producto.tipoSolicitud }
+                                   
+
+                           </li> 
+                                
+                                
+                          
+                })
+            }
+
+        </ul>
+    );
+
+    
 }
+
+
+

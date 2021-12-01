@@ -83,6 +83,13 @@ export const DashboardRoutes = () => {
                         : (user.idRol !== 5) ? redireccionar(user.idRol) : <ListaSubastas />
                     }
                 </Route>
+                <Route exact path="/detalle-solicitud-producto">
+                    {
+                        (user === null)
+                        ?<LoginScreen />
+                        : (user.idRol !== 5) ? redireccionar(user.idRol) : <ListaSubastas />
+                    }
+                </Route>
             </Switch>
         </div>
     )
