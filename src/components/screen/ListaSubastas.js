@@ -39,17 +39,9 @@ export const ListaSubastas = () => {
                                 
                           
                 })
-            }
-            <div> 
-    
-    </div>      
-
-         </ul>
-
-        
-    );
-
-    
+            }    
+         </ul>  
+    ); 
 }
 
 
