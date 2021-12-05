@@ -11,7 +11,7 @@ const init = ()=>{
 }
 
 export const MainApp = () => {
-
+    
     const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')));
 
     const [subasta, dispatch] = useReducer(subastaReducer, []);

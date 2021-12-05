@@ -41,18 +41,22 @@ export const ProductoScreen = () => {
 
     const handleClick = ()=>{
 
-        const action = {
-            type : 'add',
-            payload : {
-                ...producto,
-                cantidad
+        if(Number(cantidad)<=Number(producto.stock)){
+
+            const action = {
+                type : 'add',
+                payload : {
+                    ...producto,
+                    cantidad
+                }
             }
+            
+            dispatchVenta(action);
+    
+            alert(`${producto.nombre} añadido al carrito de compras`)
+        }else{
+            alert('Cantidad supera al stock permitido');
         }
-        
-        dispatchVenta(action);
-
-        alert(`${producto.nombre} añadido al carrito de compras`)
-
     }
 
     return (

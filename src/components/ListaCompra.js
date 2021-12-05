@@ -33,7 +33,7 @@ export const ListaCompra = ({idProducto = 0, img = '', nombre = '', precio = 0, 
                 <p>Cantidad: {cantidad}</p>
             </div>
             <div className="col-3">
-                <button className="btn btn-light" onClick={()=>{handleDelete(idProducto, nombre)}}><i class="fas fa-trash-alt"></i></button>
+                <button className="btn btn-light" onClick={()=>{handleDelete(idProducto, nombre)}}><i className="fas fa-trash-alt"></i></button>
             </div>
             <hr />
         </div>

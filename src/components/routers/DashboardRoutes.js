@@ -12,6 +12,10 @@ import { ListaSubastas } from './../screens/ListaSubastas';
 import { NavBar } from '../NavBar';
 import { UserContext } from '../contexts/UserContext';
 import { ComprasScreen } from '../screens/ComprasScreen';
+import { PagosScreen } from './../screens/PagosScreen';
+import { SubastasProductorScreen } from './../screens/SubastasProductorScreen';
+import { CrearProductoScreen } from './../screens/CrearProductoScreen';
+import { SideBar } from '../SideBar';
 
 export const DashboardRoutes = () => {
 
@@ -36,6 +40,7 @@ export const DashboardRoutes = () => {
     return (
         <div>
             <NavBar />
+            {/*<!--SideBar /-->*/}
             <Switch>
                 <Route exact path="/market">
                     {
@@ -91,6 +96,27 @@ export const DashboardRoutes = () => {
                         (user === null)
                         ?<LoginScreen />
                         : (user.idRol !== 4) ? redireccionar(user.idRol) : <ComprasScreen />
+                    }
+                </Route>
+                <Route exact path="/pago">
+                    {
+                        (user === null)
+                        ?<LoginScreen />
+                        : (user.idRol !== 4) ? redireccionar(user.idRol) : <PagosScreen />
+                    }
+                </Route>
+                <Route exact path="/sub-productor">
+                    {
+                        (user === null)
+                        ?<LoginScreen />
+                        : (user.idRol !== 2) ? redireccionar(user.idRol) : <SubastasProductorScreen />
+                    }
+                </Route>
+                <Route exact path="/crear-prod">
+                    {
+                        (user === null)
+                        ?<LoginScreen />
+                        : (user.idRol !== 2) ? redireccionar(user.idRol) : <CrearProductoScreen />
                     }
                 </Route>
             </Switch>

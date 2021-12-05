@@ -1,16 +1,33 @@
 import React, { useContext, useEffect, useState } from 'react'
+import { useHistory } from 'react-router';
 import { VentaInternaContext } from '../contexts/VentaInternaContext';
 import { ListaCompra } from '../ListaCompra';
 
 export const ComprasScreen = () => {
+
+    const history = useHistory();
 
     const [productos, setProductos] = useState([]);
 
     const {venta, dispatchVenta} = useContext(VentaInternaContext);
 
     useEffect(() => {
-        setProductos(JSON.parse(localStorage.getItem('ventas')));
-    }, [venta])
+        const prod = localStorage.getItem('ventas'); 
+
+        if(prod === null){
+            setProductos([]);
+        }else{
+            setProductos(JSON.parse(localStorage.getItem('ventas')));
+        }
+    }, [venta]);
+
+    const handleCick = ()=>{
+        if(productos.length>0){
+            history.push('/pago');
+        }else{
+            alert('Carro de compras vacío');
+        }
+    }
 
     return (
         <div className="container">
@@ -34,7 +51,11 @@ export const ComprasScreen = () => {
                     })
                 }
             </div>
-            <div className="btn btn-primary">Comprar</div>
+            <div className="text-center">
+                <button className="btn btn-primary" onClick={handleCick}>
+                    Comprar
+                </button>
+            </div>
         </div>
     )
 }

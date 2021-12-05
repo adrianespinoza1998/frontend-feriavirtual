@@ -1,35 +1,20 @@
 import '../../styles/subasta-screen.css'
 import { useHistory } from 'react-router-dom';
+import { useContext } from 'react';
+import { UserContext } from './../contexts/UserContext';
 
 export const HomeClienteExterno = ()=>{
 
-    const history = useHistory();
-
-    const handleSubasta = ()=>{
-        history.push('/subasta');
-    }
-
-    const handleListaSubasta = () =>{
-        history.push('/lista-subastas');
-    }
+    const {user} = useContext(UserContext);
 
     return(
         <div>
             <div className="text-center">
                 <p className="display-4">
-                    Home Cliente Externo
+                    Bienvenido {user.nombre}
                 </p>
             </div>
-            <div className="formulario-subasta mt-5">
-                <div className="row">
-                    <div className="col-6 text-center">
-                        <button className="btn btn-primary boton-subastas" onClick={handleListaSubasta}>Ver subastas propias</button>
-                    </div>
-                    <div className="col-6 text-center">
-                        <button className="btn btn-primary boton-subastas" onClick={handleSubasta}>Crear Subasta</button>
-                    </div>
-                </div>
-            </div>
+            <hr />
         </div>
     )
 }

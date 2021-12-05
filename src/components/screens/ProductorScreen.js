@@ -1,22 +1,17 @@
+import { useContext } from "react";
 import { useHistory } from "react-router-dom";
+import { UserContext } from './../contexts/UserContext';
 
 export const ProductorScreen = ()=>{
 
-    let usuario;
-    const history = useHistory();
-
-    if(localStorage.getItem('user')==null){
-        history.push('/login');
-    }else{
-        usuario = JSON.parse(localStorage.getItem('user'));
-        if(usuario.idRol !== 2){
-            history.push('/login');
-        }
-    }
+    const {user} = useContext(UserContext);
 
     return(
         <div>
-            <p>ProductorScreen</p>
+            <div className="text-center">
+                <p className="display-4">Bienvenido {user.nombre}</p>
+            </div>
+            <hr />
         </div>
     );
 }

@@ -1,12 +1,11 @@
 import axios from "axios";
 import { urlApi } from "./url";
 
-
 export const createSubasta = async(idUsuario = 0, idSolicitudProductos = 0 )=>{
 
     try{
 
-        const fetch = axios({
+        const fetch = await axios({
             method : 'POST',
             url : `${urlApi}/api/subastas`,
             data : {
