@@ -1,17 +1,31 @@
 import React from 'react'
 import { useForm } from './../hooks/useForm';
+import { useContext } from 'react';
+import { UserContext } from './contexts/UserContext';
+import { crearPostulacion } from './../helpers/crearPostulacion';
 
-export const FichaOferta = ({tipoProducto = '', cantidad = 0}) => {
+export const FichaOferta = ({idDetalleSolProd = 0, tipoProducto = '', cantidad = 0}) => {
 
     const [form, handleInputChange] = useForm({
         precio : ''
     });
 
+    const {user} = useContext(UserContext);
+
     const {precio} = form;
+
+    const handleClick = async()=>{
+        if(Number(precio)>0){            
+
+            await crearPostulacion(idDetalleSolProd, Number(precio), user.idUsuario);
+
+            alert('Postulación creada');
+        }    
+    }
 
     return (
         <div className="card mb-5">
-            <h5 class="card-title p-3">Producto requerido</h5>
+            <h5 className="card-title p-3">Producto requerido</h5>
             <div className="card-body">
                 <p className="card-text">Nombre: {tipoProducto}</p>
                 <p className="card-text">Cantidad requerida: {cantidad} KG</p>
@@ -28,11 +42,11 @@ export const FichaOferta = ({tipoProducto = '', cantidad = 0}) => {
                             onChange={handleInputChange}
                         />
                     </div>
-                    <div class="col-3">
+                    <div className="col-3">
                         Total: {(precio!=='') ? (Number(precio) * cantidad) : 0} USD
                     </div>
                     <div className="col-3">
-                        <button className="btn btn-primary">Aceptar</button>
+                        <button className="btn btn-primary" onClick={handleClick}>Aceptar</button>
                     </div>
                 </div>
             </div>

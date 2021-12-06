@@ -114,7 +114,7 @@ export const NavBar = () => {
         <div>
             <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
                 <div className="container-fluid">
-                    <button className="btn btn-dark burger" onClick={handleToggle}><i class="fas fa-bars"></i></button>
+                    <button className="btn btn-dark burger" onClick={handleToggle}><i className="fas fa-bars"></i></button>
                     <p className="text-light texto-nav">Feria Virtual</p>
 
                     <div className="row">
@@ -136,8 +136,8 @@ export const NavBar = () => {
             </nav>
             <Menu isOpen={false} className="bg-dark">
                 {
-                    optionSidebar().map(btn =>{
-                        return <div className="text-center"><button className="btn btn-dark boton-sidebar" onClick={()=>{btn.function()}}>{btn.nombre}</button></div>
+                    optionSidebar().map((btn,index) =>{
+                        return <div key={index} className="text-center"><button className="btn btn-dark boton-sidebar" onClick={()=>{btn.function()}}>{btn.nombre}</button></div>
                     })
                 }
             </Menu>

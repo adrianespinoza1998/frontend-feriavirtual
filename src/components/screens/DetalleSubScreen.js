@@ -12,8 +12,6 @@ export const DetalleSubScreen = () => {
 
     const fetchData = async()=>{
         const lista = await listarDetSolProd(id);
-
-        console.log(JSON.stringify(lista));
         setDetSolProd(lista);
     }
 
@@ -29,7 +27,12 @@ export const DetalleSubScreen = () => {
             <hr />
             {
                 detSolProd.map( det =>{
-                    return <FichaOferta tipoProducto={det.tipoProducto} cantidad={det.cantidad} />
+                    return <FichaOferta
+                                key={det.idDetalleSolProductos} 
+                                idDetalleSolProd={det.idDetalleSolProductos} 
+                                tipoProducto={det.tipoProducto} 
+                                cantidad={det.cantidad} 
+                            />
                 })
             }
         </div>
