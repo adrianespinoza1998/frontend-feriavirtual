@@ -53,14 +53,14 @@ export const NavBar = () => {
     {
         nombre : 'Ver subastas propias',
         function : ()=>{
-            history.push('/subasta');
+            history.push('/lista-subastas');
             setToggle(false);
         }
     },
     {
         nombre : 'Crear Subasta',
         function : ()=>{
-            history.push('/lista-subastas');
+            history.push('/subasta');
             setToggle(false);
         }
     },
