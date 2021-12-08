@@ -1,13 +1,35 @@
-.formulario-login{
-    
-    /*width: 50em;
-    height: 60em;
-    margin-left: 50%;*/
+@media only screen and (min-width: 1081px) {
 
-    padding-left: 25em;
-    padding-right: 25em;
+    .formulario-login{
+        padding-left: 3em;
+        padding-right: 3em;
+        margin-left: 12em;
+        margin-right: 12em;
+        margin-top: 5em;
+    }
+    
 }
 
+@media only screen and (max-width: 1080px) {
+
+    .formulario-login{
+        padding-left: 1em;
+        padding-right: 1em;
+        margin-left: 0.5em;
+        margin-right: 0.5em;
+        margin-top: 11em;
+    }
+    
+}
+
+
+
 .icon-usuario{
-    padding: 0.5em;
+    width: 10em;
+    padding: 1em;
+    margin-left: calc(50% - 5em);
+}
+
+.registro{
+    cursor: pointer;
 }

@@ -1,6 +1,6 @@
 import React from 'react'
 import { useHistory } from "react-router-dom";
-import '../styles/landingstyles.css'
+import '../../styles/landingstyles.css'
 
 export const LandingScreen = () => {
 
@@ -11,7 +11,7 @@ export const LandingScreen = () => {
     }
 
     return (
-        <div>
+        <div className="pantalla">
             <h1 className="text-center display-4">Feria Virtual</h1>
 
             <hr />
