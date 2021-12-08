@@ -8,12 +8,16 @@ export const SelectRoles = ({handleInputChange})=>{
 
     const [roles, setRoles] = useState([]);
 
-    useEffect(async()=>{
+    const fetchData = async()=>{
         const lista = await listarRoles();
 
         setRoles(lista);
 
         handle({target: {value: 5}});
+    }
+
+    useEffect(()=>{
+        fetchData();
     },[]);
 
     const handle = ({target})=>{
@@ -31,7 +35,7 @@ export const SelectRoles = ({handleInputChange})=>{
             <option key="00" value={0}>--Seleccione Rol--</option>
             {
                 roles.map((rol)=>{
-                    if(rol.descripcion!='admin'){
+                    if(rol.descripcion!=='ADMIN'){
                         return <option key={rol.descripcion} value={rol.idRol}>{rol.descripcion}</option>
                     }
                 })

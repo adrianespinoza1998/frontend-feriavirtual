@@ -4,8 +4,8 @@ import { useHistory } from "react-router-dom";
 import { userIcon } from '../../helpers/getUserImg'
 import { validarUsuario } from '../../helpers/validarUsuario';
 import { useForm } from '../../hooks/useForm';
-import { UserContext } from '../UserContext';
 import { useValidarRol } from './../../hooks/useValidarRol';
+import { UserContext } from './../contexts/UserContext';
 
 export const LoginForm = () => {
 
@@ -50,7 +50,7 @@ export const LoginForm = () => {
 
     return (
         <form className="card formulario-login">
-            <img className="card-img-top icon-usuario" src={userIcon}/>
+            <img className="card-img-top icon-usuario" src={userIcon} alt="user"/>
             <input
                 className="form-control mt-2" 
                 type="email" 

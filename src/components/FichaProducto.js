@@ -1,13 +1,19 @@
 import React from 'react'
+import { useHistory } from 'react-router';
 import '../styles/productos.css'
-import { useHistory } from 'react-router-dom';
 
 export const FichaProducto = ({nombreProducto, precioProducto, 
-    stockProducto, img}) => {
+    stockProducto, img, idProducto}) => {
+
+    const history = useHistory();
+
+    const handleClick = (idProducto)=>{
+        history.push(`/producto/${idProducto}`);
+    }
 
     return (
-        <div className="card ficha-producto">
-            <img className="card-img-top img-manzana" src={img} />
+        <div className="card ficha-producto" onClick={()=>{handleClick(idProducto)}}>
+            <img className="card-img-top img-manzana" src={img} alt={nombreProducto}/>
             <div className="card-body">
                 <p>Nombre: {nombreProducto}</p>
                 <p>Precio: {precioProducto}</p>

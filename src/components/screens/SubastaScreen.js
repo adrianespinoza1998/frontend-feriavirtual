@@ -1,17 +1,19 @@
 import { CrearSubasta } from '../CrearSubasta';
+
 import { useContext, useState } from 'react';
-import { useHistory } from 'react-router-dom';
-import { SubastaContext } from './../SubastaContext';
+import { SubastaContext } from '../contexts/SubastaContext';
+import { UserContext } from '../contexts/UserContext';
+
+import { createDetSol } from '../../helpers/createDetSol';
+import { createDetalleDetSol } from '../../helpers/createDetalleDetSol';
+import { createSubasta } from '../../helpers/createSubasta';
+import { validarSubasta } from '../../helpers/validarSubasta';
 
 import '../../styles/subasta-screen.css';
-import { UserContext } from './../UserContext';
 
 export const SubastaScreen = ()=>{
 
-    //TODO: Implementar useMemo
     const {user} = useContext(UserContext);
-
-    const history = useHistory();
 
     const {subasta, dispatch} = useContext(SubastaContext);
 
@@ -50,13 +52,31 @@ export const SubastaScreen = ()=>{
         }
     }
 
-    const handleSubmit = ()=>{
+    const handleSubmit = async(e)=>{
 
-        //TODO: Crear helpers solicitud producto
+        if(validarSubasta(subasta)){
+            const solProd = await createDetSol(user.idUsuario, 2, 1);
 
-        console.log(JSON.stringify(subasta));
+            const {msg} = solProd;
+    
+            const listaSolProd = msg.split(" ");
+    
+            const idSolProd = listaSolProd[listaSolProd.length-1];
 
-        console.log(JSON.stringify(user));
+            for(const sub of subasta){
+
+                const input = document.querySelector(`#inputSubasta${sub.id}`);
+                const cantidad = input.value;
+                await createDetalleDetSol(Number(idSolProd), Number(cantidad), sub.id_tipo_producto);
+    
+            }
+    
+            await createSubasta(user.idUsuario, idSolProd);
+    
+            alert('Subasta creada de forma correcta');
+        }else{
+            console.log('Uno o más datos erroneos');
+        }
     }
 
     return(

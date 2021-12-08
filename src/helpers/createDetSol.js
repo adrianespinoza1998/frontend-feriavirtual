@@ -1,22 +1,24 @@
 import axios from "axios";
-import { urlApi } from "./url";
+import { urlApi } from './url';
 
-export const createSubasta = async(idUsuario = 0, idSolicitudProductos = 0 )=>{
+export const createDetSol = async(idUsuario = 0, idTipoSolicitud = 1, idEstadoSolicitud = 1)=>{
 
     try{
-
+        
         const fetch = await axios({
             method : 'POST',
-            url : `${urlApi}/api/subastas`,
+            url : `${urlApi}/api/sol-prod`,
             data : {
                 idUsuario,
-                idSolicitudProductos
+                idTipoSolicitud,
+                idEstadoSolicitud
             }
         });
 
         const {data} = fetch;
 
         return data;
+        
     }catch(error){
         return error;
     }

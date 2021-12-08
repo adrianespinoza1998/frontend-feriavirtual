@@ -1,16 +1,22 @@
 import React, { useContext } from 'react'
 import { Switch } from 'react-router'
 import { Route } from 'react-router-dom';
-import { LoginScreen } from './../screen/LoginScreen';
-import { MarketScreen } from './../screen/MarketScreen';
-import { ProductoScreen } from './../screen/ProductoScreen';
-import { ProductorScreen } from './../screen/ProductorScreen';
-import { SubastaScreen } from './../screen/SubastaScreen';
-import { TransporteScreen } from './../screen/TransporteScreen';
-import { HomeClienteExterno } from './../screen/HomeClienteExterno';
-import { ListaSubastas } from './../screen/ListaSubastas';
+import { LoginScreen } from './../screens/LoginScreen';
+import { MarketScreen } from './../screens/MarketScreen';
+import { ProductoScreen } from './../screens/ProductoScreen';
+import { ProductorScreen } from './../screens/ProductorScreen';
+import { SubastaScreen } from './../screens/SubastaScreen';
+import { TransporteScreen } from './../screens/TransporteScreen';
+import { HomeClienteExterno } from './../screens/HomeClienteExterno';
+import { ListaSubastas } from './../screens/ListaSubastas';
 import { NavBar } from '../NavBar';
-import { UserContext } from '../UserContext';
+import { UserContext } from '../contexts/UserContext';
+import { ComprasScreen } from '../screens/ComprasScreen';
+import { PagosScreen } from './../screens/PagosScreen';
+import { SubastasProductorScreen } from './../screens/SubastasProductorScreen';
+import { CrearProductoScreen } from './../screens/CrearProductoScreen';
+import { SideBar } from '../SideBar';
+import { DetalleSubScreen } from './../screens/DetalleSubScreen';
 
 export const DashboardRoutes = () => {
 
@@ -26,6 +32,8 @@ export const DashboardRoutes = () => {
                 return <MarketScreen />
             case 5:
                 return <HomeClienteExterno />
+            default:
+                return <LoginScreen />
         }
     }
 
@@ -81,6 +89,41 @@ export const DashboardRoutes = () => {
                         (user === null)
                         ?<LoginScreen />
                         : (user.idRol !== 5) ? redireccionar(user.idRol) : <ListaSubastas />
+                    }
+                </Route>
+                <Route exact path="/comprar">
+                    {
+                        (user === null)
+                        ?<LoginScreen />
+                        : (user.idRol !== 4) ? redireccionar(user.idRol) : <ComprasScreen />
+                    }
+                </Route>
+                <Route exact path="/pago">
+                    {
+                        (user === null)
+                        ?<LoginScreen />
+                        : (user.idRol !== 4) ? redireccionar(user.idRol) : <PagosScreen />
+                    }
+                </Route>
+                <Route exact path="/sub-productor">
+                    {
+                        (user === null)
+                        ?<LoginScreen />
+                        : (user.idRol !== 2) ? redireccionar(user.idRol) : <SubastasProductorScreen />
+                    }
+                </Route>
+                <Route exact path="/crear-prod">
+                    {
+                        (user === null)
+                        ?<LoginScreen />
+                        : (user.idRol !== 2) ? redireccionar(user.idRol) : <CrearProductoScreen />
+                    }
+                </Route>
+                <Route exact path="/det-sub/:id">
+                    {
+                        (user === null)
+                        ?<LoginScreen />
+                        : (user.idRol !== 2) ? redireccionar(user.idRol) : <DetalleSubScreen />
                     }
                 </Route>
             </Switch>
