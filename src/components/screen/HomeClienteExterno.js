@@ -1,3 +1,5 @@
+import { NavBar } from "../NavBar"
+
 import '../../styles/subasta-screen.css'
 import { useHistory } from 'react-router-dom';
 
@@ -15,6 +17,7 @@ export const HomeClienteExterno = ()=>{
 
     return(
         <div>
+            <NavBar />
             <div className="text-center">
                 <p className="display-4">
                     Home Cliente Externo

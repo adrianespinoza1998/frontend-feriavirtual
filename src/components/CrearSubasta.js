@@ -1,51 +1,28 @@
 import { SelectProducto } from "./select/SelectProducto";
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useForm } from './../hooks/useForm';
 
-export const CrearSubasta = ({id, dispatch})=>{
+export const CrearSubasta = ({id})=>{
 
     const [form, handleInputChange] = useForm({
-        id_tipo_producto : 0,
+        idProducto : 0,
         cantidad : 0
     });
 
 
     useEffect(()=>{
         console.log(JSON.stringify(id));
-
-        const data = {
-            type : 'add',
-            payload : {
-                id,
-                id_tipo_producto,
-                cantidad
-            }
-        }
-
-        dispatch(data);
     },[])
-    const {id_tipo_producto, cantidad} = form;
+    const {idProducto, cantidad} = form;
 
-    const handleChange = async(e)=>{
+    const handleChange = ()=>{
 
-        await handleInputChange(e);
-
-        const data = {
-            type : 'update',
-            payload: {
-                id,
-                id_tipo_producto,
-                cantidad
-            }
-        }
-
-        dispatch(data);
     }
 
     return (
         <form>
             <p className="mt-1">Seleccionar producto:</p>
-            <SelectProducto handleInputChange={handleChange} />
+            <SelectProducto handleInputChange={handleInputChange} />
             <p className="mt-1">Cantidad:</p>
             <div className="row">
                 <div className="col-11">
@@ -54,7 +31,7 @@ export const CrearSubasta = ({id, dispatch})=>{
                         className="form-control"
                         name="cantidad"
                         value={cantidad}
-                        onChange={handleChange} 
+                        onChange={handleInputChange} 
                     />
                 </div>
                 <div className="col-1">

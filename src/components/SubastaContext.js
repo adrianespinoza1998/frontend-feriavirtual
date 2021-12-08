@@ -1,3 +1,3 @@
-import { createContext, useDispatch } from 'react';
+import { createContext } from 'react';
 
-export const SubastaContext = createContext(null);
+export const SubastaContext = createContext({});

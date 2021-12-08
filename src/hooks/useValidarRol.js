@@ -15,19 +15,19 @@ export const useValidarRol = ()=>{
 
             switch(idRol){
                 case 2:
-                    history.replace('/productor');
+                    history.push('/productor');
                     break;
                 case 3:
-                    history.replace('/transporte');
+                    history.push('/transporte');
                     break;
                 case 4:
-                    history.replace('/market');
+                    history.push('/market');
                     break;
                 case 5:
-                    history.replace('/externo');
+                    history.push('/externo');
                     break;
                 default:
-                    history.replace('/login');
+                    history.push('/login');
                     break;
             }
         }

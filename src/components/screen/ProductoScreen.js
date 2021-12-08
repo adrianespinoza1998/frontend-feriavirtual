@@ -1,37 +1,17 @@
-import React, { useEffect, useState } from 'react'
-import { Redirect, useParams } from 'react-router';
+import React from 'react'
+import { NavBar } from '../NavBar';
 import '../../styles/productos.css'
-import { getProductoXId } from './../../helpers/getProductoXId';
 
-export const ProductoScreen = () => {
-
-    const {id} = useParams();
-
-    console.log(id);
-
-    const [producto, setProducto] = useState({});
-
-    useEffect(async()=>{
-        const getProducto = await getProductoXId(id);
-
-        if(getProducto.idProducto === 0){
-            return <Redirect to="/market" />
-        }
-
-        setProducto(getProducto);
-
-        console.log(JSON.stringify(getProducto));
-
-    },[]);
-
+export const ProductoScreen = ({nombre, precio, stock, img, descripcion}) => {
     return (
         <div>
+            <NavBar />
             <div className="card producto">
-                <img className="card-img-top img-manzana-screen" src={producto.img} />
+                <img className="card-img-top img-manzana-screen" src="https://cdn.discordapp.com/attachments/650501558437675042/888876601956265994/pngfind.com-apples-png-372458.png" />
                 <div className="card-body">
-                    <p>Nombre: {producto.nombre}</p>
-                    <p>Precio: {producto.precio}</p>
-                    <p>Stock: {producto.stock}</p>
+                    <p>Nombre:</p>
+                    <p>Precio:</p>
+                    <p>Stock:</p>
                 </div>
             </div>
 

@@ -1,20 +1,27 @@
-import React, { useContext } from 'react'
-import { Switch } from 'react-router'
-import { Route } from 'react-router-dom';
-import { LoginScreen } from './../screen/LoginScreen';
-import { MarketScreen } from './../screen/MarketScreen';
-import { ProductoScreen } from './../screen/ProductoScreen';
-import { ProductorScreen } from './../screen/ProductorScreen';
-import { SubastaScreen } from './../screen/SubastaScreen';
-import { TransporteScreen } from './../screen/TransporteScreen';
-import { HomeClienteExterno } from './../screen/HomeClienteExterno';
-import { ListaSubastas } from './../screen/ListaSubastas';
-import { NavBar } from '../NavBar';
-import { UserContext } from '../UserContext';
+import React, { useContext, useReducer } from 'react'
+import { Route, BrowserRouter as Router, Switch, Redirect } from 'react-router-dom';
+import { LoginScreen } from './screen/LoginScreen';
+import { HomeScreen } from './screen/HomeScreen';
+import { LandingScreen } from './screen/LandingScreen';
+import { MarketScreen } from './screen/MarketScreen';
+import { ProductoScreen } from './screen/ProductoScreen';
+import { ProductorScreen } from './screen/ProductorScreen'
+import { SignInScreen } from './screen/SignInScreen';
+import { SubastaScreen } from './screen/SubastaScreen';
+import { TransporteScreen } from './screen/TransporteScreen';
+import { HomeClienteExterno } from './screen/HomeClienteExterno';
+import { ListaSubastas } from './screen/ListaSubastas';
+import { SubastaContext } from './SubastaContext';
+import { UserContext } from './UserContext';
 
-export const DashboardRoutes = () => {
+
+const initialState = [];
+
+export const AppRouter = () => {
 
     const {user} = useContext(UserContext);
+
+    //const [producto, dispatch] = useReducer(reducer, initialState, init)
 
     const redireccionar = (idRol)=>{
         switch(idRol){
@@ -25,15 +32,29 @@ export const DashboardRoutes = () => {
             case 4:
                 return <MarketScreen />
             case 5:
-                return <HomeClienteExterno />
+                return (
+                    <SubastaContext.Provider>
+                        <HomeClienteExterno />
+                    </SubastaContext.Provider>
+                )
         }
     }
 
-
     return (
-        <div>
-            <NavBar />
+        <Router>
             <Switch>
+                <Route exact path="/">
+                    <LandingScreen />
+                </Route>
+                <Route exact path="/login">
+                    <LoginScreen />
+                </Route>
+                <Route exact path="/signin">
+                    <SignInScreen />
+                </Route>
+                <Route exact path="/home">
+                    <HomeScreen />
+                </Route>
                 <Route exact path="/market">
                     {
                         (user === null) 
@@ -41,12 +62,13 @@ export const DashboardRoutes = () => {
                             : (user.idRol !== 4) ? redireccionar(user.idRol) : <MarketScreen />
                     }
                 </Route>
-                <Route exact path="/producto/:id">
+                <Route exact path="/producto">
                     {
                         (user === null)
                             ?<LoginScreen />
                             : (user.idRol !== 4) ? redireccionar(user.idRol) : <ProductoScreen />
                     }
+                    <ProductoScreen />
                 </Route>
                 <Route exact path="/productor">
                     {
@@ -65,7 +87,7 @@ export const DashboardRoutes = () => {
                 <Route exact path="/transporte">
                     {
                         (user === null)
-                        ? <LoginScreen />
+                        ?<LoginScreen />
                         : (user.idRol !== 3) ? redireccionar(user.idRol) : <TransporteScreen />
                     }
                 </Route>
@@ -83,7 +105,8 @@ export const DashboardRoutes = () => {
                         : (user.idRol !== 5) ? redireccionar(user.idRol) : <ListaSubastas />
                     }
                 </Route>
+                <Redirect to="/" />
             </Switch>
-        </div>
-    )
+        </Router>
+    );
 }
