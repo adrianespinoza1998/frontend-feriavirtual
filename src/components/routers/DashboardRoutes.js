@@ -17,6 +17,7 @@ import { SubastasProductorScreen } from './../screens/SubastasProductorScreen';
 import { CrearProductoScreen } from './../screens/CrearProductoScreen';
 import { SideBar } from '../SideBar';
 import { DetalleSubScreen } from './../screens/DetalleSubScreen';
+import '../../styles/index.css'
 
 export const DashboardRoutes = () => {
 
