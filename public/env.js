@@ -1,3 +1,1 @@
-window.env = {
-  "STRIPE_PUBLIC_KEY": "pk_test_51K2c1uGnHrEROYPt1hBB4XkrRVB84UsEz45Hwz1dogPCEo7ccFd794zSS4HNlsIhTIGJdDb6ry6jzpfYiL0EaWj000dWLQL3kA"
-};
+window.env = {};

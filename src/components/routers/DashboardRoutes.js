@@ -17,6 +17,7 @@ import { SubastasProductorScreen } from './../screens/SubastasProductorScreen';
 import { CrearProductoScreen } from './../screens/CrearProductoScreen';
 import { SideBar } from '../SideBar';
 import { DetalleSubScreen } from './../screens/DetalleSubScreen';
+import { SeleccionarPostulanteScreen } from './../screens/SeleccionarPostulanteScreen';
 
 export const DashboardRoutes = () => {
 
@@ -124,6 +125,13 @@ export const DashboardRoutes = () => {
                         (user === null)
                         ?<LoginScreen />
                         : (user.idRol !== 2) ? redireccionar(user.idRol) : <DetalleSubScreen />
+                    }
+                </Route>
+                <Route exact path="/seleccion-post/:id">
+                    {
+                        (user === null)
+                        ?<LoginScreen />
+                        : (user.idRol !== 5) ? redireccionar(user.idRol) : <SeleccionarPostulanteScreen />
                     }
                 </Route>
             </Switch>
