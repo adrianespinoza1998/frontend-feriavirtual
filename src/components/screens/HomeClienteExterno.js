@@ -15,6 +15,8 @@ export const HomeClienteExterno = ()=>{
             <h3>Bienvenido {user.nombre}</h3>
                 </p>
             <hr className="star-light" />
+            
+            <div className='mt-5'> <p className="display-6"> Presiona el botón <i className="fas fa-bars"></i> para ver las opciones</p> </div>
         </div>
     </body>
 </div>
