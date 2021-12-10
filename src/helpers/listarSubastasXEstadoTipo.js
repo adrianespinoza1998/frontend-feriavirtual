@@ -11,7 +11,6 @@ export const listarSubastasXEstadoTipo = async(idEstado = 0, idTipo = 0) => {
     
         const {data} = fetch;
 
-        console.log(JSON.stringify(data));
         return data;
     }catch(error){
         return error;

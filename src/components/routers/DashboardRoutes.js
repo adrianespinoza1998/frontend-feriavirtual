@@ -15,7 +15,6 @@ import { ComprasScreen } from '../screens/ComprasScreen';
 import { PagosScreen } from './../screens/PagosScreen';
 import { SubastasProductorScreen } from './../screens/SubastasProductorScreen';
 import { CrearProductoScreen } from './../screens/CrearProductoScreen';
-import { SideBar } from '../SideBar';
 import { DetalleSubScreen } from './../screens/DetalleSubScreen';
 import { SeleccionarPostulanteScreen } from './../screens/SeleccionarPostulanteScreen';
 

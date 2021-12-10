@@ -5,7 +5,7 @@ import { FichaPostulante } from '../FichaPostulante';
 import { listarDetSolProd } from './../../helpers/listarDetSolProd';
 import { useForm } from './../../hooks/useForm';
 
-export const SeleccionarPostulanteScreen = (idDetSol) => {
+export const SeleccionarPostulanteScreen = () => {
 
     const {id} = useParams();
 
@@ -13,7 +13,6 @@ export const SeleccionarPostulanteScreen = (idDetSol) => {
 
     const fetchData = async()=>{
         const lista = await listarDetSolProd(id);
-        console.log(JSON.stringify(lista));
 
         setPostulaciones(lista);
     }
@@ -30,14 +29,20 @@ export const SeleccionarPostulanteScreen = (idDetSol) => {
             <hr />
             <div className='container'>
             {
-                postulaciones.map(post=>{
-                    return <FichaPostulante
+                (postulaciones.length>0) 
+                ?
+                    postulaciones.map(post=>{
+                        return <FichaPostulante
                                 key={post.idDetalleSolProductos}
                                 tipoProducto={post.tipoProducto}
                                 cantidad={post.cantidad} 
                                 id={post.idDetalleSolProductos}
+                                lista={postulaciones}
+                                setLista={setPostulaciones}
                             />
                 })
+                :
+                    <div className='text-center'><p className='display-4'>No hay productos solicitados</p></div>
             }
             </div>
         </div>

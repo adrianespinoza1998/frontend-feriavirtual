@@ -7,27 +7,34 @@ import { useHistory } from 'react-router-dom';
 
 export const ListaSubastas = ()=>{
 
+    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+
     const history = useHistory();
 
     const [subastas, setSubastas] = useState([]);
 
     const {user} = useContext(UserContext);
 
-    const [idSubIni, setIdSubIni] = useState(0)
+    const [idSubIni, setIdSubIni] = useState(0);
 
     const fetchData = async()=>{
         const lista = await listarSubastas(user.idUsuario);
 
-        setSubastas(lista);
+        const listaAceptados = lista.filter(sub=> sub.tipoSolicitud === 'EXTERNA' && sub.estadoSolicitud === 'ACEPTADA');
 
-        setIdSubIni( lista[0].idSubastas -1);
+        setSubastas(listaAceptados);
+
+        if(listaAceptados.length>0){
+            setIdSubIni( listaAceptados[0].idSubastas -1);
+        }
     }
 
     useEffect(()=>{
         fetchData();
     },[]);
 
-    const handleSubasta = (idSolProd)=>{
+    const handleSubasta = (idSolProd, idSubastas)=>{
+        localStorage.setItem('idSubastas', idSubastas);
         history.push(`/seleccion-post/${idSolProd}`)
     }
 
@@ -37,17 +44,21 @@ export const ListaSubastas = ()=>{
                 <div className="text-center">
                     <p className="display-4">Lista Subastas</p>
                 </div>
+                <hr />
                 <ul className="list-group text-center">
                     {
+                        (subastas.length>0)
+                        ?
                         subastas.map(sub=>{
                             return <li 
                                         key={sub.idSubastas}
                                         className="list-group-item list-group-item-action list-group-item-light btn"
-                                        onClick={()=>{handleSubasta(sub.idSolicitudProductos)}}
+                                        onClick={()=>{handleSubasta(sub.idSolicitudProductos, sub.idSubastas)}}
                                     >
-                                        {`Subasta ${sub.idSubastas - idSubIni} - Tipo de  solicitud : ${sub.tipoSolicitud}`}
+                                        {`Subasta ${sub.idSubastas} - Fecha : ${(sub.fecha!==null) ? new Date(sub.fecha).toLocaleDateString("es-ES", options) : 'No registrada'}`}
                                     </li>
                         })
+                        : <p className='display-4'>No hay subastas aprobadas</p>
                     }
                 </ul>
             </div>

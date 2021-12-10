@@ -12,6 +12,7 @@ export const DetalleSubScreen = () => {
 
     const fetchData = async()=>{
         const lista = await listarDetSolProd(id);
+
         setDetSolProd(lista);
     }
 
@@ -32,6 +33,8 @@ export const DetalleSubScreen = () => {
                                 idDetalleSolProd={det.idDetalleSolProductos} 
                                 tipoProducto={det.tipoProducto} 
                                 cantidad={det.cantidad} 
+                                lista={detSolProd}
+                                setLista={setDetSolProd}
                             />
                 })
             }

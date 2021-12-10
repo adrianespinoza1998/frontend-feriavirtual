@@ -7,7 +7,8 @@ export const SelectProducto = ({handleInputChange, id = 0})=>{
     const [productos, setProductos] = useState([]);
 
     const fetchData = async()=>{
-        const productos = await listarTipoProducto(); 
+        const productos = await listarTipoProducto();
+        console.log(JSON.stringify(productos)); 
         setProductos(productos);
     }
 

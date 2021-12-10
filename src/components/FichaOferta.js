@@ -4,7 +4,7 @@ import { useContext } from 'react';
 import { UserContext } from './contexts/UserContext';
 import { crearPostulacion } from './../helpers/crearPostulacion';
 
-export const FichaOferta = ({idDetalleSolProd = 0, tipoProducto = '', cantidad = 0}) => {
+export const FichaOferta = ({idDetalleSolProd = 0, tipoProducto = '', cantidad = 0, lista = [], setLista = ()=>{}}) => {
 
     const [form, handleInputChange] = useForm({
         precio : ''
@@ -20,6 +20,10 @@ export const FichaOferta = ({idDetalleSolProd = 0, tipoProducto = '', cantidad =
             await crearPostulacion(idDetalleSolProd, Number(precio), user.idUsuario);
 
             alert('Postulación creada');
+
+            const listaFinal = lista.filter((l)=>l.idDetalleSolProductos !== idDetalleSolProd);
+
+            setLista(listaFinal);
         }    
     }
 

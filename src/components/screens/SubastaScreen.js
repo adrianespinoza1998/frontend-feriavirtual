@@ -3,15 +3,18 @@ import { CrearSubasta } from '../CrearSubasta';
 import { useContext, useState } from 'react';
 import { SubastaContext } from '../contexts/SubastaContext';
 import { UserContext } from '../contexts/UserContext';
+import { useHistory } from 'react-router-dom';
 
 import { createDetSol } from '../../helpers/createDetSol';
 import { createDetalleDetSol } from '../../helpers/createDetalleDetSol';
-import { createSubasta } from '../../helpers/createSubasta';
 import { validarSubasta } from '../../helpers/validarSubasta';
 
 import '../../styles/subasta-screen.css';
 
+
 export const SubastaScreen = ()=>{
+
+    const history = useHistory();
 
     const {user} = useContext(UserContext);
 
@@ -63,17 +66,24 @@ export const SubastaScreen = ()=>{
     
             const idSolProd = listaSolProd[listaSolProd.length-1];
 
+            console.log("id sol prod: " + idSolProd);
+
             for(const sub of subasta){
 
                 const input = document.querySelector(`#inputSubasta${sub.id}`);
                 const cantidad = input.value;
+
+                console.log(input, cantidad);
+
                 await createDetalleDetSol(Number(idSolProd), Number(cantidad), sub.id_tipo_producto);
     
             }
     
-            await createSubasta(user.idUsuario, idSolProd);
+            //await createSubasta(user.idUsuario, idSolProd);
     
             alert('Subasta creada de forma correcta');
+
+            history.push('/externo');
         }else{
             console.log('Uno o más datos erroneos');
         }

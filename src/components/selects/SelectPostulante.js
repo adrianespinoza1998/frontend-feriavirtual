@@ -1,6 +1,5 @@
 import React from 'react'
 import { useState, useEffect } from 'react';
-import { listarPostulacionXSolProd } from './../../helpers/listarPostulacionXSolProd';
 import { listarPostulacionXDetSol } from './../../helpers/listarPostulacionXDetSol';
 
 export const SelectPostulante = ({idDetSol = 0, handleInputChange}) => {
@@ -46,17 +45,26 @@ export const SelectPostulante = ({idDetSol = 0, handleInputChange}) => {
     }
 
     return (
-        <select className="form-control" onChange={handle}>
-            <option key={0} value={0}>--SELECCIONE TIPO PRODUCTO--</option>
+        <div>
             {
-                postulantes.map(post=>{
-                    return <option 
-                                key={post.idPostulacion} 
-                                value={post.idPostulacion} >
-                                {`${post.nombre} ${post.apPaterno} ${post.apMaterno}`}
-                            </option>
-                })
+                (postulantes.length>0)
+                ?
+                <select className="form-control" onChange={handle}>
+                    <option key={0} value={0}>--SELECCIONE TIPO PRODUCTO--</option>
+                    {   
+                        postulantes.map(post=>{
+                            return <option 
+                                        key={post.idPostulacion} 
+                                        value={post.idPostulacion} >
+                                        {`${post.nombre} ${post.apPaterno} ${post.apMaterno}`}
+                                    </option>
+                        })
+                    }
+                </select>
+                :
+                <p>No hay postulantes</p>
             }
-        </select>
+        </div>
+
     )
 }
