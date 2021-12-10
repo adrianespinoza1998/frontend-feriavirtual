@@ -49,7 +49,7 @@ export const LoginForm = () => {
     }
 
     return (
-        <form className="card formulario-login">
+        <form className="card formulario-login shadow">
             <img className="card-img-top icon-usuario" src={userIcon} alt="user"/>
             <input
                 className="form-control mt-2" 

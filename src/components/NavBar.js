@@ -115,7 +115,9 @@ export const NavBar = () => {
             <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
                 <div className="container-fluid">
                     <button className="btn btn-dark burger" onClick={handleToggle}><i className="fas fa-bars"></i></button>
-                    <p className="text-light texto-nav">Feria Virtual</p>
+                    
+                    <a class="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0">
+                    <img class="img-fluid" src="https://cdn.discordapp.com/attachments/650501558437675042/918928622277001286/41_feria_virtual-finallllllllllllll.png" /> </a>
 
                     <div className="row">
                         {

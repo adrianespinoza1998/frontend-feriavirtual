@@ -6,15 +6,18 @@ import { UserContext } from './../contexts/UserContext';
 export const HomeClienteExterno = ()=>{
 
     const {user} = useContext(UserContext);
-
+    
     return(
-        <div>
-            <div className="text-center">
-                <p className="display-4">
-                    Bienvenido {user.nombre}
+    
+<div> <body class="masthead bg text-black text-center">
+         <div className="container mt-5"><img class="img-fluid d-block mx-auto mb-10" src="https://i.ibb.co/tMMpQrY/user.png" />
+            <p className="display-4">
+            <h3>Bienvenido {user.nombre}</h3>
                 </p>
-            </div>
-            <hr />
+            <hr className="star-light" />
         </div>
+    </body>
+</div>
+        
     )
 }

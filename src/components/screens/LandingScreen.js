@@ -12,27 +12,32 @@ export const LandingScreen = () => {
 
     return (
         <div className="pantalla">
-            <h1 className="text-center display-4">Feria Virtual</h1>
+           <img className="img-logo" src="https://cdn.discordapp.com/attachments/650501558437675042/918928622277001286/41_feria_virtual-finallllllllllllll.png" alt="logo.png"  />
 
             <hr />
 
+            <div >
+                    <img className="img-maipo" src="https://cdn.discordapp.com/attachments/650501558437675042/918925615996993556/MAIPO_GRANDE-final_landing.png" alt="maipo-grande.png" />
+                </div>
             <div className="row">
                 <div className="col-6">
-                    <p className="texto">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt 
-                        ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation 
-                        ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in 
-                        reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint 
-                        occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                    </p>
-                </div>
-                <div className="col-6">
-                    <img className="img-manzana" src="https://cdn.discordapp.com/attachments/650501558437675042/888876601956265994/pngfind.com-apples-png-372458.png" alt="manzana" />
+
+                    <div className="text-center p-2">
+                <button className=" button btn btn-primary btn-lg" type="button" onClick={toLogin}>Ingresar</button>
+            </div>
                 </div>
             </div>
-            <div className="text-center p-2">
-                <button className="btn btn-secondary" type="button" onClick={toLogin}>Ingresar</button>
-            </div>
-        </div>
+            <footer class="footer text-faded text-center py-3">
+    <div class="container">
+        <p class="m-0 small">Copyright © Maipo Grande 2021</p>
+    </div>
+</footer>             
+                    </div>
+               
+            
+        
     )
 }
+
+
+
