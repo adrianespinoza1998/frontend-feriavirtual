@@ -44,7 +44,7 @@ export const NavBar = () => {
         {
             nombre: 'Editar Usuario',
             function : ()=>{
-                console.log('Hola');
+                history.push('/editar-usuario');
                 setToggle(false);
             }
     }];
@@ -67,7 +67,7 @@ export const NavBar = () => {
     {
         nombre : 'Editar Usuario',
         function : ()=>{
-            console.log('Funca');
+            history.push('/editar-usuario');
             setToggle(false);
         }
     }];
@@ -76,7 +76,7 @@ export const NavBar = () => {
     {
         nombre : 'Editar Usuario',
         function : ()=>{
-            console.log('Funca');
+            history.push('/editar-usuario');
             setToggle(false);
         }
     }];

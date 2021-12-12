@@ -5,6 +5,9 @@ export const validarRegistro = (form)=>{
         form.contrasena!=='' && !isNaN(form.idPais) && form.idPais>0 && !isNaN(form.idRol) &&
         form.idRol>0){
 
+            console.log(JSON.stringify(form));
+
+
             if(form.nombre.lenght<2){
                 alert("El nombre debe tener 2 letras mínimo");
                 return false;
@@ -19,11 +22,6 @@ export const validarRegistro = (form)=>{
                 alert("El apellido materno debe tener 2 letras mínimo");
                 return false;
             }
-
-            /*if(form.dni < 7){
-                alert("El dni debe poseer minimo 7 cifras");
-                return false;
-            }*/
 
             const direccion = form.direccion.split(' ');
             const arrayDireccion = [];
@@ -63,7 +61,7 @@ export const validarRegistro = (form)=>{
             return true;
 
     }else{
-        alert('Uno o más campos vacios')
+        alert('Uno o más campos vacios');
         return false;
     }
 }

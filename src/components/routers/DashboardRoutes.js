@@ -18,6 +18,7 @@ import { CrearProductoScreen } from './../screens/CrearProductoScreen';
 import { DetalleSubScreen } from './../screens/DetalleSubScreen';
 import { SeleccionarPostulanteScreen } from './../screens/SeleccionarPostulanteScreen';
 import '../../styles/index.css'
+import { EditarUsuarioScreen } from '../screens/EditarUsuarioScreen';
 
 
 export const DashboardRoutes = () => {
@@ -133,6 +134,13 @@ export const DashboardRoutes = () => {
                         (user === null)
                         ?<LoginScreen />
                         : (user.idRol !== 5) ? redireccionar(user.idRol) : <SeleccionarPostulanteScreen />
+                    }
+                </Route>
+                <Route exact path="/editar-usuario">
+                    {
+                        (user === null)
+                        ?<LoginScreen />
+                        : <EditarUsuarioScreen />
                     }
                 </Route>
             </Switch>

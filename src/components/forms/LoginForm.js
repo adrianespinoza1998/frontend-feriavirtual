@@ -28,6 +28,8 @@ export const LoginForm = () => {
         if(correo !== '' && contrasena !== ''){
             const data = await validarUsuario(correo, contrasena);
 
+            data.contrasena = contrasena;
+
             if(data.idUsuario!== 0){
                 localStorage.setItem('user', JSON.stringify(data));
 
