@@ -76,6 +76,7 @@ export const SignInForm = ()=>{
 
     return(
         <form className="formulario-signin" onSubmit={handleSubmit}>
+            <p>Nombre:</p>
             <input 
                 className="form-control mt-1" 
                 type="text"
@@ -84,7 +85,7 @@ export const SignInForm = ()=>{
                 value={nombre}
                 onChange={handleInputChange}
             />
-
+            <p className='mt-3'>Apellido Paterno:</p>
             <input 
                 className="form-control mt-1"
                 type="text"
@@ -93,7 +94,7 @@ export const SignInForm = ()=>{
                 value={apPaterno}
                 onChange={handleInputChange}
             />
-
+            <p className='mt-3'>Apellido Materno:</p>
             <input 
                 className="form-control mt-1"
                 type="text"
@@ -102,7 +103,7 @@ export const SignInForm = ()=>{
                 value={apMaterno}
                 onChange={handleInputChange}
             />
-
+            <p className='mt-3'>DNI:</p>
             <input 
                 className="form-control mt-1"
                 type="text"
@@ -110,20 +111,20 @@ export const SignInForm = ()=>{
                 name="dni"
                 maxLength="10"
                 minLength="7"
-                placeholder="DNI"
+                placeholder="Ejemplo: 1000000"
                 value={dni}
                 onChange={handleInputChange}
             />
-
+            <p className='mt-3'>Dirección:</p>
             <input 
                 className="form-control mt-1"
                 type="text"
                 name="direccion"
-                placeholder="Dirección"
+                placeholder="Ejemplo: Nombre Calle 1234"
                 value={direccion}
                 onChange={handleInputChange}
             />
-
+            <p className='mt-3'>Código postal</p>
             <input 
                 className="form-control mt-1"
                 type="text"
@@ -131,29 +132,29 @@ export const SignInForm = ()=>{
                 minLength="7"
                 maxLength="8"
                 name="codPostal"
-                placeholder="Código Postal"
+                placeholder="Ejemplo: 76800000"
                 value={codPostal}
                 onChange={handleInputChange}
             />
-
+            <p className='mt-3'>Correo electrónico</p>
             <input 
                 className="form-control mt-1"
                 type="email"
                 name="correo"
-                placeholder="Correo"
+                placeholder="Ejemplo: nombre@proveedor.com"
                 value={correo}
                 onChange={handleInputChange}
             />
-
+            <p className='mt-3'>Usuario:</p>
             <input 
                 className="form-control mt-1"
                 type="text"
                 name="usuario"
-                placeholder="Usuario"
+                placeholder="Ejemplo: nombre190"
                 value={usuario}
                 onChange={handleInputChange}
             />
-
+            <p className='mt-3'>Contraseña</p>
             <input
                 className="form-control mt-1"
                 type="password"
