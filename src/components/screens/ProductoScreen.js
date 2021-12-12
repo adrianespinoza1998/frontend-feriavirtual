@@ -24,6 +24,8 @@ export const ProductoScreen = () => {
     const fetchData = async(id)=>{
         const getProducto = await getProductoXId(id);
 
+        console.log(JSON.stringify(getProducto));
+
         if(getProducto.idProducto === 0){
             history.push('/market');
         }
@@ -39,28 +41,35 @@ export const ProductoScreen = () => {
         localStorage.setItem('ventas', JSON.stringify(venta));
     }, [venta]);
 
-    const handleClick = ()=>{
+    const handleClick = (e)=>{
 
-        if(Number(cantidad)<=Number(producto.stock)){
+        e.preventDefault();
 
-            const action = {
-                type : 'add',
-                payload : {
-                    ...producto,
-                    cantidad
-                }
-            }
-            
-            dispatchVenta(action);
-    
-            alert(`${producto.nombre} añadido al carrito de compras`)
+        if(cantidad === ''){
+            alert('Por favor ingrese los kg del pedido');
         }else{
-            alert('Cantidad supera al stock permitido');
+
+            if(Number(cantidad)<=Number(producto.stock)){
+
+                const action = {
+                    type : 'add',
+                    payload : {
+                        ...producto,
+                        cantidad
+                    }
+                }
+                
+                dispatchVenta(action);
+        
+                alert(`${producto.nombre} añadido al carrito de compras`)
+            }else{
+                alert('Cantidad supera al stock permitido');
+            }
         }
     }
 
     return (
-        <div>
+        <form onSubmit={handleClick}>
             <div className="card producto">
                 <img className="card-img-top img-manzana-screen" src={producto.img} alt="manzana" />
                 <div className="card-body">
@@ -75,7 +84,9 @@ export const ProductoScreen = () => {
                     <div>
                         <input 
                             width="100px" 
-                            type="number" 
+                            type="text"
+                            pattern="\d*"
+                            minLength="1"
                             className="form-control"
                             name="cantidad"
                             value={cantidad}
@@ -87,15 +98,14 @@ export const ProductoScreen = () => {
                     </div>
                     <div>
                         <button 
-                            type="button" 
+                            type="submit" 
                             className="btn btn-primary mt-3 mb-3"
-                            onClick={handleClick}
                         >
                             Agregar al carro
                         </button>
                     </div>
                 </div>
             </div>
-        </div>
+        </form>
     );
 }

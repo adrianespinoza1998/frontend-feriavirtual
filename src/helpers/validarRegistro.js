@@ -20,10 +20,10 @@ export const validarRegistro = (form)=>{
                 return false;
             }
 
-            if(form.dni < 7){
+            /*if(form.dni < 7){
                 alert("El dni debe poseer minimo 7 cifras");
                 return false;
-            }
+            }*/
 
             const direccion = form.direccion.split(' ');
             const arrayDireccion = [];
@@ -42,16 +42,6 @@ export const validarRegistro = (form)=>{
             if(Number(arrayDireccion[arrayDireccion.length-1])<1){
                 alert('Número de dirección incorrecto');
 
-                return false;
-            }
-
-            if(isNaN(form.codPostal)){
-                alert("Código postal sin números");
-                return false;
-            }
-
-            if(form.codPostal.lenght>=7 || Number(form.codPostal)>0){
-                alert('Código postal incorrecto');
                 return false;
             }
 

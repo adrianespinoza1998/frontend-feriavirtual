@@ -49,7 +49,7 @@ export const LoginForm = () => {
     }
 
     return (
-        <form className="card formulario-login shadow">
+        <form className="card formulario-login shadow" onSubmit={handleSubmit}>
             <img className="card-img-top icon-usuario" src={userIcon} alt="user"/>
             <input
                 className="form-control mt-2" 
@@ -76,7 +76,7 @@ export const LoginForm = () => {
             <button 
                 className="btn btn-primary mt-2 mb-4" 
                 type="submit" 
-                onClick={handleSubmit}
+                //onClick={handleSubmit}
             >
                 Acceder
             </button>

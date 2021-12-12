@@ -35,7 +35,7 @@ export const createUsuario = async(form)=>{
                 idPais,
                 idRol,
                 idEstado : 1,
-                terminosCondiciones
+                terminosCondiciones : (terminosCondiciones) ? 1 : 0
             }
         });
 

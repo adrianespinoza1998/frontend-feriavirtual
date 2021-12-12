@@ -29,7 +29,7 @@ export const LandingScreen = () => {
             </div>
             <footer class="footer text-faded text-center py-3">
     <div class="container">
-        <p class="m-0 small">Copyright © Maipo Grande 2021</p>
+        <p className="m-0 small">Copyright © Maipo Grande 2021</p>
     </div>
 </footer>             
                     </div>

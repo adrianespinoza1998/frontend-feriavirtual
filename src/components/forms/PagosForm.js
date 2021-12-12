@@ -13,6 +13,7 @@ import { createSubasta } from './../../helpers/createSubasta';
 import { createDetalleVenta } from './../../helpers/createDetalleVenta';
 import { listarTipoProducto } from './../../helpers/listarTipoProducto';
 import { updateProducto } from './../../helpers/updateProducto';
+import { useHistory } from 'react-router';
 
 export const PagosForm = () => {
 
@@ -20,6 +21,8 @@ export const PagosForm = () => {
     const {venta} = useContext(VentaInternaContext);
 
     const [validar, setValidar] = useState(false);
+
+    const history = useHistory();
 
     //Guardar datos de la tarjeta con el hook useForm
     const [form, handleInputChange] = useForm({
@@ -62,18 +65,9 @@ export const PagosForm = () => {
 
         //Agregar un espacio cuando se agregan 4 números
         if(indices.includes(e.target.value.length) && indices.includes(number.length + 1) || (indices.includes(e.target.value.length) && validar)){
-            //e.target.value = `${e.target.value} `;
             e.target.value = `${e.target.value.substring(0, e.target.value.length - 1)} ${e.target.value.substring(e.target.value.length - 1, e.target.value.length)}`
             setValidar(false);
         }
-
-        /*const ultimaLetra = e.target.value.substring(e.target.value.length - 1, e.target.value.length);
-
-        if(ultimaLetra === ' ' && e.target.value.length < number.length){
-            e.target.value = e.target.value.substring(0, e.target.value.length - 1);
-            console.log('Funca');
-            setValidar(true);
-        }*/
         
         handleInputChange(e);
     }
@@ -86,33 +80,6 @@ export const PagosForm = () => {
 
         handleInputChange(e);
     }
-
-    /*const handleSubmit = async()=>{
-
-        if(validarSubasta(subasta)){
-            const solProd = await createDetSol(user.idUsuario, 2, 1);
-
-            const {msg} = solProd;
-    
-            const listaSolProd = msg.split(" ");
-    
-            const idSolProd = listaSolProd[listaSolProd.length-1];
-
-            *for(const sub of subasta){
-
-                const input = document.querySelector(`#inputSubasta${sub.id}`);
-                const cantidad = input.value;
-                await createDetalleDetSol(Number(idSolProd), Number(cantidad), sub.id_tipo_producto);
-    
-            }*
-    
-            await createSubasta(user.idUsuario, idSolProd);
-    
-            alert('Subasta creada de forma correcta');
-        }else{
-            console.log('Uno o más datos erroneos');
-        }
-    }*/
 
     //Guardar pago
     const processPayment = async(e) => {
@@ -142,7 +109,8 @@ export const PagosForm = () => {
             const idSubasta = listaSub[listaSub.length-1];
 
             //TODO: Actualizar stock
-            /*for(const ven of venta){
+            //Crear detalle venta x cada producto
+            for(const ven of venta){
 
                 const precio = ven.precio * ven.cantidad;
 
@@ -160,16 +128,18 @@ export const PagosForm = () => {
                     }
                 }
 
-                await updateProducto(ven.idProducto, cant, ven.precio, cant, user.id)
-            }*/
+                //await updateProducto(ven.idProducto, cant, ven.precio, cant, user.id)
+            }
 
             alert('Venta realizada');
+
+            history.push('/market');
 
         }
     }
 
     return (
-        <div className="card mb-2">
+        <div className="card mx-auto">
             <div className="card-body">
                 <Cards
                     number={number}

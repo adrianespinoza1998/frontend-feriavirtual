@@ -12,8 +12,8 @@ export const FichaProducto = ({nombreProducto, precioProducto,
     }
 
     return (
-        <div className="card ficha-producto" onClick={()=>{handleClick(idProducto)}}>
-            <img className="card-img-top img-manzana" src={img} alt={nombreProducto}/>
+        <div className="card ficha-producto shadow" onClick={()=>{handleClick(idProducto)}}>
+            <img className="card-img-top img-manzana mt-3 p-1" src={img} alt={nombreProducto}/>
             <div className="card-body">
                 <p>Nombre: {nombreProducto}</p>
                 <p>Precio: {precioProducto}</p>

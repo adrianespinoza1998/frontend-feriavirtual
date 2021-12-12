@@ -50,7 +50,7 @@ export const SelectPostulante = ({idDetSol = 0, handleInputChange}) => {
                 (postulantes.length>0)
                 ?
                 <select className="form-control" onChange={handle}>
-                    <option key={0} value={0}>--SELECCIONE TIPO PRODUCTO--</option>
+                    <option key={0} value={0}>--SELECCIONE POSTULANTE--</option>
                     {   
                         postulantes.map(post=>{
                             return <option 

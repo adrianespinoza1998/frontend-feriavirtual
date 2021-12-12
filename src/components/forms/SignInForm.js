@@ -24,7 +24,7 @@ export const SignInForm = ()=>{
         contrasena : '',
         idPais : 0,
         idRol : 0,
-        terminosCondiciones : 0
+        terminosCondiciones : false
     });
 
     const {
@@ -46,33 +46,36 @@ export const SignInForm = ()=>{
         try{
             if(validarRegistro(form)){
                 const user = await createUsuario(form);
+
+                const {msg} = user;
+
+                const arrayUser = msg.split(' ');
                 
-                if(user==='No se creo el usuario ' + form.nombre){
-                    alert(user.msg);
+                if(arrayUser.includes('No')){
+                    alert('Dni y/o correo y/o usuario ya se han registrado en el sistema');
                 }else{
                     alert(user.msg);
                     history.push('/login');
                 }
-            }else{
-                console.log(JSON.stringify(form));
+
             }
         }catch(error){
             console.log(error);
         }
     }
 
-    const toggleTerminos = (e)=>{
-        if(e.target.value === 0){
-            e.target.value = 1;
-        }else{
-            e.target.value = 0;
-        }
+    const toggleTerminos = ()=>{
 
-        handleInputChange(e);
+        handleInputChange({
+            target:{
+                name : 'terminosCondiciones',
+                value : !terminosCondiciones
+            }
+        });
     }
 
     return(
-        <form className="formulario-signin">
+        <form className="formulario-signin" onSubmit={handleSubmit}>
             <input 
                 className="form-control mt-1" 
                 type="text"
@@ -102,8 +105,11 @@ export const SignInForm = ()=>{
 
             <input 
                 className="form-control mt-1"
-                type="number"
+                type="text"
+                pattern="\d*"
                 name="dni"
+                maxLength="10"
+                minLength="7"
                 placeholder="DNI"
                 value={dni}
                 onChange={handleInputChange}
@@ -120,7 +126,10 @@ export const SignInForm = ()=>{
 
             <input 
                 className="form-control mt-1"
-                type="number"
+                type="text"
+                pattern="\d*"
+                minLength="7"
+                maxLength="8"
                 name="codPostal"
                 placeholder="Código Postal"
                 value={codPostal}
@@ -168,7 +177,7 @@ export const SignInForm = ()=>{
                     id="flexCheck"
                     onChange={toggleTerminos} 
                 />
-                <label className="form-check-label" for="flexCheck">
+                <label className="form-check-label">
                     Acepto los terminos y condiciones
                 </label>
             </div>
@@ -176,7 +185,7 @@ export const SignInForm = ()=>{
                 <button 
                     type="submit" 
                     className="btn btn-secondary mt-1"
-                    onClick={handleSubmit}
+                    //onClick={handleSubmit}
                 >
                     Registrarse
                 </button>

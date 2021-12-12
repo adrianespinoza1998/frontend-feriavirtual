@@ -29,8 +29,6 @@ export const createDetalleVenta = async(idTipoProducto = 0, cantidad = 0, precio
 
         const stringFecha = `${diaFecha()}-${mesFecha()}-${fecha.getFullYear()}`;
 
-        console.log(stringFecha);
-
         const fetch = await axios({
             method : 'POST',
             url : `${urlApi}/api/det-venta`,
@@ -39,11 +37,13 @@ export const createDetalleVenta = async(idTipoProducto = 0, cantidad = 0, precio
                 cantidad,
                 precio,
                 idSubasta,
-                fecha : stringFecha
+                fecha : '11-01-2022'
             }
         });
         
         const {data} = fetch;
+
+        console.log(data);
 
         return data;
     
