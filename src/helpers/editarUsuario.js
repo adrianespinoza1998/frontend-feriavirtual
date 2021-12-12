@@ -19,7 +19,7 @@ export const editarUsuario = async(id,form) => {
 
         const fetch = await axios({
             method : 'PUT',
-            url : urlApi+'/api/usuario/'+id,
+            url : urlApi+'/api/usuario/'+Number(id),
             data: {
                 nombre,
                 apPaterno,
