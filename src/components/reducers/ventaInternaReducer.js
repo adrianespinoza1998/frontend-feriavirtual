@@ -13,6 +13,9 @@ export const ventaInternaReducer = (state = [], action)=>{
             );
         case 'delete':
             return state.filter( todo => todo.idProducto !== action.payload);
+
+        case 'reset':
+            return [];
         default:
             return state;
     }

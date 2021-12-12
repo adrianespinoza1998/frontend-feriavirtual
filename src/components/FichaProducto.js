@@ -16,7 +16,7 @@ export const FichaProducto = ({nombreProducto, precioProducto,
             <img className="card-img-top img-manzana mt-3 p-1" src={img} alt={nombreProducto}/>
             <div className="card-body">
                 <p>Nombre: {nombreProducto}</p>
-                <p>Precio: {precioProducto}</p>
+                <p>Precio X KG: {precioProducto} CLP</p>
                 <p>Stock: {stockProducto}</p>
             </div>
         </div>

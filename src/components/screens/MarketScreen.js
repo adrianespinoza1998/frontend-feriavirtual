@@ -5,8 +5,12 @@ import { useEffect } from 'react';
 import '../../styles/landingstyles.css'
 import { FichaProducto } from '../FichaProducto'
 import { listarProductos } from '../../helpers/listarProductos';
+import { useContext } from 'react';
+import { VentaInternaContext } from './../contexts/VentaInternaContext';
 
 export const MarketScreen = () => {
+
+    const {venta} = useContext(VentaInternaContext);
 
     const [productos, setProductos] = useState([]);
 
@@ -16,7 +20,7 @@ export const MarketScreen = () => {
     }
     useEffect(()=>{
         fetchData();
-    },[]);
+    },[venta]);
 
     return (
         <div>

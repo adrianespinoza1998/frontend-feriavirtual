@@ -5,20 +5,21 @@ import 'react-credit-cards/es/styles-compiled.css'
 import { useState, useContext } from 'react';
 //import { env } from 'react-dotenv';
 import { validarCompra } from './../../helpers/validarCompra';
-import { validarSubasta } from './../../helpers/validarSubasta';
 import { UserContext } from './../contexts/UserContext';
 import { VentaInternaContext } from './../contexts/VentaInternaContext';
 import { createDetSol } from './../../helpers/createDetSol';
 import { createSubasta } from './../../helpers/createSubasta';
-import { createDetalleVenta } from './../../helpers/createDetalleVenta';
 import { listarTipoProducto } from './../../helpers/listarTipoProducto';
 import { updateProducto } from './../../helpers/updateProducto';
 import { useHistory } from 'react-router';
+import { createDetVentaInterna } from './../../helpers/createDetVentaInterna';
+import { createPago } from './../../helpers/createPago';
+import { getProductoXId } from './../../helpers/getProductoXId';
 
 export const PagosForm = () => {
 
     const {user} = useContext(UserContext);
-    const {venta} = useContext(VentaInternaContext);
+    const {venta, dispatchVenta} = useContext(VentaInternaContext);
 
     const [validar, setValidar] = useState(false);
 
@@ -106,15 +107,25 @@ export const PagosForm = () => {
             const {msg : msgSub}  = subasta;
 
             const listaSub = msgSub.split(' ');
+
             const idSubasta = listaSub[listaSub.length-1];
 
-            //TODO: Actualizar stock
             //Crear detalle venta x cada producto
+            let precioTotal = 0;
+
+            let cantTotal = 0;
+
+            const listaVentaDelete = [];
+
             for(const ven of venta){
+
+                listaVentaDelete.push(ven);
 
                 const precio = ven.precio * ven.cantidad;
 
-                await createDetalleVenta(ven.idProducto, ven.cantidad, precio, idSubasta );
+                precioTotal = precioTotal + precio;
+
+                await createDetVentaInterna(ven.idProducto, ven.cantidad, precio, idSubasta );
 
                 const tiposProductos = await listarTipoProducto();
 
@@ -122,13 +133,33 @@ export const PagosForm = () => {
 
                 const cant = ven.stock - ven.cantidad;
 
+                cantTotal = cantTotal + cant;
+
                 for(const tp of tiposProductos){
                     if(tp.descripcion === ven.nombre){
                         idTipoProducto = tp.idTipoProducto;
                     }
                 }
 
-                //await updateProducto(ven.idProducto, cant, ven.precio, cant, user.id)
+                const editProd = await getProductoXId(ven.idProducto);
+
+                await updateProducto(editProd.idProducto, cant, ven.precio, cant, user.id, idTipoProducto, editProd.img);
+            }
+
+
+            const arrayTarjeta = number.split(' ');
+
+            const nroTarjeta = `${arrayTarjeta[0]}${arrayTarjeta[1]}${arrayTarjeta[2]}${arrayTarjeta[3]}`;
+
+            await createPago(Number(idSubasta), precioTotal, Number(nroTarjeta), 81);
+
+            for(const ven of listaVentaDelete){
+                const action = {
+                    type: 'delete',
+                    payload : ven.idProducto
+                }
+
+                dispatchVenta(action);
             }
 
             alert('Venta realizada');
@@ -139,7 +170,7 @@ export const PagosForm = () => {
     }
 
     return (
-        <div className="card mx-auto">
+        <form className="card mx-auto">
             <div className="card-body">
                 <Cards
                     number={number}
@@ -211,9 +242,9 @@ export const PagosForm = () => {
                         </div>
                     </div>
 
-                    <button onClick={processPayment} type="submit" className="btn btn-success btn-block btn-lg mt-2">Pagar</button>
+                    <button type="submit" className="btn btn-success btn-block btn-lg mt-2" onClick={processPayment}>Pagar</button>
                 </form>
             </div>
-        </div>
+        </form>
     )
 }
