@@ -8,18 +8,16 @@ export const HomeClienteExterno = ()=>{
     const {user} = useContext(UserContext);
     
     return(
-    
-<div> <body class="masthead bg text-black text-center">
-         <div className="container mt-5"><img class="img-fluid d-block mx-auto mb-10" src="https://i.ibb.co/tMMpQrY/user.png" />
-            <p className="display-4">
-            <h3>Bienvenido {user.nombre}</h3>
-                </p>
-            <hr className="star-light" />
-            
-            <div className='mt-5'> <p className="display-6"> Presiona el botón <i className="fas fa-bars"></i> para ver las opciones</p> </div>
+    <body className="masthead bg text-black text-center">
+        <div> 
+
+             <div className="container mt-5"><img className="img-fluid d-block mx-auto mb-10" src="https://i.ibb.co/tMMpQrY/user.png" />
+             <h3 className='display-4'>Bienvenido {user.nombre}</h3>
+                <hr className="star-light" />
+
+                <div className='mt-5'> <p className="display-6"> Presiona el botón <i className="fas fa-bars"></i> para ver las opciones</p> </div>
+            </div>
         </div>
-    </body>
-</div>
-        
+    </body> 
     )
 }

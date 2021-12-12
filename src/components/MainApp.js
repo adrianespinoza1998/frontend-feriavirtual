@@ -32,6 +32,11 @@ export const MainApp = () => {
                     dispatchVenta
                 }}>
                     <AppRouter></AppRouter>
+                    <footer className="footer text-faded text-center py-3">
+                        <div className="container">
+                            <p className="m-0 small">Copyright © Maipo Grande 2021</p>
+                        </div>
+                    </footer>  
                 </VentaInternaContext.Provider>
             </SubastaContext.Provider>
         </UserContext.Provider>

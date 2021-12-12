@@ -26,13 +26,8 @@ export const LandingScreen = () => {
                 <button className=" button btn btn-primary btn-lg" type="button" onClick={toLogin}>Ingresar</button>
             </div>
                 </div>
-            </div>
-            <footer class="footer text-faded text-center py-3">
-    <div class="container">
-        <p className="m-0 small">Copyright © Maipo Grande 2021</p>
-    </div>
-</footer>             
-                    </div>
+            </div>           
+        </div>
                
             
         
